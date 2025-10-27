@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>DEMO_PR_LOAN_001</LoanIdentifier>
+    <LoanAmount>350000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>Conv</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>85</LoanToValue>
+    <ProductCode>30YR_FIXED</ProductCode>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>25000</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-800</CashFromToBorrowerAmount>
+      <PITIAmount>2650</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <NewConstructionIndicator>false</NewConstructionIndicator>
+    <ADDRESS>
+      <StreetAddress>789 Maple Drive</StreetAddress>
+      <CityName>Houston</CityName>
+      <StateCode>TX</StateCode>
+      <PostalCode>77001</PostalCode>
+    </ADDRESS>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B1</BorrowerID>
+    <CitizenshipType>Permanent Resident</CitizenshipType>
+    <MaritalStatusType>Married</MaritalStatusType>
+    <SelfEmployedIndicator>false</SelfEmployedIndicator>
+    
+    <DECLARATION>
+      <BankruptcyIndicator>false</BankruptcyIndicator>
+    </DECLARATION>
+    
+    <INCOME>
+      <IncomeType>Base</IncomeType>
+      <IncomeAmount>95000</IncomeAmount>
+      <IncomeSource>Primary Employment</IncomeSource>
+    </INCOME>
+    
+    <ASSETS>
+      <AssetType>CheckingAccount</AssetType>
+      <AssetCashOrMarketValueAmount>45000</AssetCashOrMarketValueAmount>
+    </ASSETS>
+    
+    <ASSETS>
+      <AssetType>SavingsAccount</AssetType>
+      <AssetCashOrMarketValueAmount>75000</AssetCashOrMarketValueAmount>
+    </ASSETS>
+  </BORROWER>
+  
+  <UNDERWRITING>
+    <AUSResult>Approved</AUSResult>
+    <UnderwritingMethod>Automated</UnderwritingMethod>
+  </UNDERWRITING>
+</MISMO_LOAN>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>DEMO_LOAN_001</LoanIdentifier>
+    <LoanAmount>425000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>Conv</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>85</LoanToValue>
+    <ProductCode>30YR_FIXED</ProductCode>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>15000</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-1200</CashFromToBorrowerAmount>
+      <PITIAmount>2950</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <NewConstructionIndicator>false</NewConstructionIndicator>
+    <ADDRESS>
+      <StreetAddress>456 Elm Street</StreetAddress>
+      <CityName>Dallas</CityName>
+      <StateCode>TX</StateCode>
+      <PostalCode>75201</PostalCode>
+    </ADDRESS>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B1</BorrowerID>
+    <CitizenshipType>Permanent Resident</CitizenshipType>
+    <MaritalStatusType>Single</MaritalStatusType>
+    <SelfEmployedIndicator>false</SelfEmployedIndicator>
+    
+    <DECLARATION>
+      <BankruptcyIndicator>false</BankruptcyIndicator>
+    </DECLARATION>
+    
+    <INCOME>
+      <IncomeType>Base</IncomeType>
+      <IncomeAmount>85000</IncomeAmount>
+      <IncomeSource>Primary Employment</IncomeSource>
+    </INCOME>
+    
+    <ASSETS>
+      <AssetType>CheckingAccount</AssetType>
+      <AssetCashOrMarketValueAmount>35000</AssetCashOrMarketValueAmount>
+    </ASSETS>
+    
+    <ASSETS>
+      <AssetType>SavingsAccount</AssetType>
+      <AssetCashOrMarketValueAmount>55000</AssetCashOrMarketValueAmount>
+    </ASSETS>
+  </BORROWER>
+  
+  <UNDERWRITING>
+    <AUSResult>Approved</AUSResult>
+    <UnderwritingMethod>Automated</UnderwritingMethod>
+  </UNDERWRITING>
+</MISMO_LOAN>

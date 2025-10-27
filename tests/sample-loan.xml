@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>LOAN123456</LoanIdentifier>
+    <LoanAmount>450000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>Conv</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>85</LoanToValue>
+    <ProductCode>30YR_FIXED</ProductCode>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>10000</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-2000</CashFromToBorrowerAmount>
+      <PITIAmount>2850</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <NewConstructionIndicator>false</NewConstructionIndicator>
+    <ADDRESS>
+      <StreetAddress>123 Main Street</StreetAddress>
+      <CityName>Austin</CityName>
+      <StateCode>TX</StateCode>
+      <PostalCode>78701</PostalCode>
+    </ADDRESS>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B1</BorrowerID>
+    <CitizenshipType>US Citizen</CitizenshipType>
+    <MaritalStatusType>Single</MaritalStatusType>
+    <SelfEmployedIndicator>false</SelfEmployedIndicator>
+    
+    <DECLARATION>
+      <BankruptcyIndicator>false</BankruptcyIndicator>
+    </DECLARATION>
+    
+    <INCOME>
+      <IncomeType>Base</IncomeType>
+      <IncomeAmount>75000</IncomeAmount>
+      <IncomeSource>Primary Employment</IncomeSource>
+    </INCOME>
+    
+    <ASSETS>
+      <AssetType>CheckingAccount</AssetType>
+      <AssetCashOrMarketValueAmount>25000</AssetCashOrMarketValueAmount>
+    </ASSETS>
+    
+    <ASSETS>
+      <AssetType>SavingsAccount</AssetType>
+      <AssetCashOrMarketValueAmount>45000</AssetCashOrMarketValueAmount>
+    </ASSETS>
+  </BORROWER>
+  
+  <UNDERWRITING>
+    <AUSResult>Approved</AUSResult>
+    <UnderwritingMethod>Automated</UnderwritingMethod>
+  </UNDERWRITING>
+</MISMO_LOAN>

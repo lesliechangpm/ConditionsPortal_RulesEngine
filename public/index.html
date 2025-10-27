@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Conditions Rules Engine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .upload-section {
+            padding: 40px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .upload-area {
+            border: 3px dashed #667eea;
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: #f8f9ff;
+        }
+        
+        .upload-area:hover {
+            border-color: #764ba2;
+            background: #f0f2ff;
+        }
+        
+        .upload-area.dragover {
+            border-color: #28a745;
+            background: #f0fff4;
+        }
+        
+        .upload-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .upload-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            margin: 10px;
+        }
+        
+        .upload-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .evaluate-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: transform 0.2s ease;
+        }
+        
+        .evaluate-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .evaluate-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .file-info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f5e8;
+            border-radius: 6px;
+            display: none;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .results {
+            display: none;
+            padding: 40px;
+        }
+        
+        .loan-info {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .loan-info h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+        
+        .loan-detail {
+            display: inline-block;
+            margin: 5px 15px 5px 0;
+            padding: 5px 12px;
+            background: #e9ecef;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+        
+        .stage-section {
+            margin-bottom: 30px;
+        }
+        
+        .stage-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px 8px 0 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        
+        .stage-content {
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+        }
+        
+        .condition-item {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            transition: background-color 0.2s ease;
+        }
+        
+        .condition-item:last-child {
+            border-bottom: none;
+        }
+        
+        .condition-item:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .condition-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .condition-code {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+        
+        .condition-class {
+            background: #6c757d;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-left: 10px;
+        }
+        
+        .condition-provider {
+            background: #17a2b8;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin-left: 5px;
+        }
+        
+        .condition-description {
+            margin: 10px 0;
+            line-height: 1.5;
+        }
+        
+        .borrower-description {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        .no-conditions {
+            text-align: center;
+            padding: 40px;
+            color: #6c757d;
+        }
+        
+        .summary {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+        
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            display: none;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+            }
+            
+            .upload-section, .results {
+                padding: 20px;
+            }
+            
+            .condition-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .condition-class, .condition-provider {
+                margin-left: 0;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏦 Loan Conditions Rules Engine</h1>
+            <p>Upload a MISMO XML file to evaluate applicable loan conditions</p>
+        </div>
+        
+        <div class="upload-section">
+            <div class="upload-area" id="uploadArea">
+                <div class="upload-icon">📄</div>
+                <h3>Drop your MISMO XML file here</h3>
+                <p>or</p>
+                <button class="upload-btn" id="chooseFileBtn">
+                    Choose File
+                </button>
+                <input type="file" id="fileInput" class="file-input" accept=".xml" />
+                <p style="margin-top: 15px; color: #666; font-size: 0.9rem;">
+                    Supports XML files up to 50MB
+                </p>
+            </div>
+            
+            <div class="file-info" id="fileInfo">
+                <strong>Selected File:</strong> <span id="fileName"></span><br>
+                <strong>Size:</strong> <span id="fileSize"></span><br>
+                <button class="evaluate-btn" id="evaluateBtn">Evaluate Loan Conditions</button>
+            </div>
+            
+            <div class="error" id="errorMsg"></div>
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <h3>Processing MISMO file...</h3>
+            <p>Evaluating loan conditions based on your file data</p>
+        </div>
+        
+        <div class="results" id="results">
+            <!-- Results will be populated here -->
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let selectedFile = null;
+
+            // File upload handling
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const chooseFileBtn = document.getElementById('chooseFileBtn');
+        const fileInfo = document.getElementById('fileInfo');
+        const evaluateBtn = document.getElementById('evaluateBtn');
+        const loading = document.getElementById('loading');
+        const results = document.getElementById('results');
+        const errorMsg = document.getElementById('errorMsg');
+
+        // Drag and drop functionality
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFileSelect(files[0]);
+            }
+        });
+
+        // Make the entire upload area clickable
+        uploadArea.addEventListener('click', (e) => {
+            if (e.target !== chooseFileBtn) {
+                fileInput.click();
+            }
+        });
+
+        // Choose file button click handler
+        chooseFileBtn.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                handleFileSelect(e.target.files[0]);
+            }
+        });
+
+        evaluateBtn.addEventListener('click', evaluateLoan);
+
+        function handleFileSelect(file) {
+            if (!file.name.toLowerCase().endsWith('.xml')) {
+                showError('Please select an XML file.');
+                return;
+            }
+
+            if (file.size > 50 * 1024 * 1024) {
+                showError('File size must be less than 50MB.');
+                return;
+            }
+
+            selectedFile = file;
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('fileSize').textContent = formatFileSize(file.size);
+            fileInfo.style.display = 'block';
+            hideError();
+        }
+
+        async function evaluateLoan() {
+            if (!selectedFile) return;
+
+            const formData = new FormData();
+            formData.append('loanFile', selectedFile);
+
+            loading.style.display = 'block';
+            results.style.display = 'none';
+            hideError();
+
+            try {
+                const response = await fetch('/api/loans/evaluate', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) {
+                    throw new Error(data.message || 'Failed to evaluate loan');
+                }
+
+                displayResults(data.data);
+
+            } catch (error) {
+                showError('Error evaluating loan: ' + error.message);
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        function displayResults(data) {
+            const { loanId, evaluationDate, conditions, totalConditions } = data;
+            
+            results.innerHTML = `
+                <div class="loan-info">
+                    <h3>📋 Loan Information</h3>
+                    <span class="loan-detail"><strong>Loan ID:</strong> ${loanId || 'Not specified'}</span>
+                    <span class="loan-detail"><strong>Evaluated:</strong> ${new Date(evaluationDate).toLocaleString()}</span>
+                    <span class="loan-detail"><strong>File:</strong> ${selectedFile.name}</span>
+                </div>
+
+                <div class="summary">
+                    <strong>📊 Summary:</strong> Found ${totalConditions} applicable condition${totalConditions !== 1 ? 's' : ''}
+                    ${totalConditions > 0 ? 'grouped by loan lifecycle stage' : ''}
+                </div>
+
+                ${generateStageSection('PTD', 'Prior to Docs', conditions.PTD, '#667eea')}
+                ${generateStageSection('PTF', 'Prior to Funding', conditions.PTF, '#28a745')}
+                ${generateStageSection('POST', 'Post Funding', conditions.POST, '#dc3545')}
+            `;
+
+            results.style.display = 'block';
+        }
+
+        function generateStageSection(stageCode, stageTitle, stageConditions, color) {
+            if (stageConditions.length === 0) {
+                return `
+                    <div class="stage-section">
+                        <div class="stage-header" style="background: linear-gradient(135deg, ${color} 0%, ${color}CC 100%);">
+                            ${stageTitle} (${stageCode}) - ${stageConditions.length} conditions
+                        </div>
+                        <div class="stage-content">
+                            <div class="no-conditions">
+                                <p>✅ No conditions required for this stage</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            const conditionsHtml = stageConditions.map(condition => `
+                <div class="condition-item">
+                    <div class="condition-header">
+                        <div>
+                            <span class="condition-code">${condition.conditionCode}</span>
+                            <span class="condition-class">${condition.class}</span>
+                            <span class="condition-provider">${condition.documentProvider}</span>
+                        </div>
+                    </div>
+                    <div class="condition-description">
+                        ${condition.description}
+                    </div>
+                    ${condition.borrowerDescription ? `
+                        <div class="borrower-description">
+                            <strong>For Borrower:</strong> ${condition.borrowerDescription}
+                        </div>
+                    ` : ''}
+                    <div style="margin-top: 10px; font-size: 0.9rem; color: #6c757d;">
+                        <strong>Category:</strong> ${condition.category}
+                    </div>
+                </div>
+            `).join('');
+
+            return `
+                <div class="stage-section">
+                    <div class="stage-header" style="background: linear-gradient(135deg, ${color} 0%, ${color}CC 100%);">
+                        ${stageTitle} (${stageCode}) - ${stageConditions.length} condition${stageConditions.length !== 1 ? 's' : ''}
+                    </div>
+                    <div class="stage-content">
+                        ${conditionsHtml}
+                    </div>
+                </div>
+            `;
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function showError(message) {
+            errorMsg.textContent = message;
+            errorMsg.style.display = 'block';
+        }
+
+        function hideError() {
+            errorMsg.style.display = 'none';
+        }
+        
+        }); // End DOMContentLoaded
+    </script>
+</body>
+</html>

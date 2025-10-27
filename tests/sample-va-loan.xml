@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>VA_LOAN789</LoanIdentifier>
+    <LoanAmount>350000</LoanAmount>
+    <LoanPurpose>Refinance</LoanPurpose>
+    <MortgageType>VA</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>75</LoanToValue>
+    <ProductCode>VA_30YR</ProductCode>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>0</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-800</CashFromToBorrowerAmount>
+      <PITIAmount>2100</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <NewConstructionIndicator>false</NewConstructionIndicator>
+    <ADDRESS>
+      <StreetAddress>456 Oak Avenue</StreetAddress>
+      <CityName>San Antonio</CityName>
+      <StateCode>TX</StateCode>
+      <PostalCode>78201</PostalCode>
+    </ADDRESS>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B1</BorrowerID>
+    <CitizenshipType>US Citizen</CitizenshipType>
+    <MaritalStatusType>Married</MaritalStatusType>
+    <SelfEmployedIndicator>false</SelfEmployedIndicator>
+    
+    <DECLARATION>
+      <BankruptcyIndicator>false</BankruptcyIndicator>
+    </DECLARATION>
+    
+    <INCOME>
+      <IncomeType>Base</IncomeType>
+      <IncomeAmount>65000</IncomeAmount>
+      <IncomeSource>Primary Employment</IncomeSource>
+    </INCOME>
+    
+    <ASSETS>
+      <AssetType>CheckingAccount</AssetType>
+      <AssetCashOrMarketValueAmount>15000</AssetCashOrMarketValueAmount>
+    </ASSETS>
+  </BORROWER>
+  
+  <REO>
+    <ADDRESS>
+      <StreetAddress>789 Pine Street</StreetAddress>
+      <CityName>Dallas</CityName>
+      <StateCode>TX</StateCode>
+    </ADDRESS>
+    <LinkedToMortgageIndicator>true</LinkedToMortgageIndicator>
+    <PaidOffAtClosingIndicator>false</PaidOffAtClosingIndicator>
+  </REO>
+  
+  <UNDERWRITING>
+    <AUSResult>Approved</AUSResult>
+    <UnderwritingMethod>Automated</UnderwritingMethod>
+    <VARefiType>IRRRL</VARefiType>
+  </UNDERWRITING>
+</MISMO_LOAN>

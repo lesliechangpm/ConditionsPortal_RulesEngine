@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env.local
+.env.production
+*.log
+coverage/
+.nyc_output/
+temp/
+uploads/
+*.tmp
+.DS_Store
