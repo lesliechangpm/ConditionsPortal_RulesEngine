@@ -4,11 +4,11 @@ import app from './app';
 // Load environment variables
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
+const PORT = parseInt(process.env.PORT || '3000', 10);
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
-// Start the server
-const server = app.listen(PORT, () => {
+// Start the server - bind to 0.0.0.0 for cloud deployment
+const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`
 🚀 Loan Conditions Rules Engine API Server Started
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
