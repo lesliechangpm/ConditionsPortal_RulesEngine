@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>FINAL_MISSING_001</LoanIdentifier>
+    <LoanAmount>350000</LoanAmount>
+    <LoanPurpose>Refinance</LoanPurpose>
+    <MortgageType>VA</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>80</LoanToValue>
+    <ProductCode>30YR_FIXED_VA_REFI</ProductCode>
+    <NewConstruction>false</NewConstruction>
+    <AUSResult>Approved</AUSResult>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>0</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-300</CashFromToBorrowerAmount>
+      <PITIAmount>2500</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>TX</PropertyState>
+    <NewConstruction>false</NewConstruction>
+    <PropertyAddress>456 Regular Home St, Dallas, TX 75201</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>Sarah</FirstName>
+    <LastName>FamilyBusiness</LastName>
+    <Citizenship>US Citizen</Citizenship>
+    <MaritalStatus>Single</MaritalStatus>
+    <SelfEmployed>true</SelfEmployed>
+    
+    <DECLARATIONS>
+      <BankruptcyIndicator>false</BankruptcyIndicator>
+    </DECLARATIONS>
+  </BORROWER>
+  
+  <!-- REO Property with mortgage to be paid off at closing - triggers CRED310 -->
+  <REO>
+    <PROPERTY>
+      <PropertyAddress>789 Payoff at Closing Ave, Houston, TX 77003</PropertyAddress>
+      <PropertyType>SingleFamily</PropertyType>
+      <PropertyState>TX</PropertyState>
+      <PropertyValue>280000</PropertyValue>
+      <LinkedToMortgage>true</LinkedToMortgage>
+      <MortgageType>Conv</MortgageType>
+      <MortgageBalance>150000</MortgageBalance>
+      <MarkedToBeSold>false</MarkedToBeSold>
+      <PaidOffAtClosing>true</PaidOffAtClosing>
+      <MonthlyRent>0</MonthlyRent>
+      <MonthlyPayment>1200</MonthlyPayment>
+      <BorrowerID>B001</BorrowerID>
+    </PROPERTY>
+  </REO>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>Bank</AssetType>
+      <AssetAmount>75000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+  
+  <!-- Self-employed with family business and high ownership - triggers INC408 -->
+  <INCOME>
+    <EMPLOYMENT>
+      <EmploymentStatus>Current</EmploymentStatus>
+      <EmployerName>Family Construction LLC</EmployerName>
+      <SelfEmployed>true</SelfEmployed>
+      <BaseIncome>95000</BaseIncome>
+      <OwnershipShare>60</OwnershipShare>
+      <EmployedByFamily>true</EmployedByFamily>
+      <BorrowerID>B001</BorrowerID>
+    </EMPLOYMENT>
+  </INCOME>
+  
+  <!-- Credit run indicator - triggers CRED320 -->
+  <CREDIT_PROFILE>
+    <CreditScore>705</CreditScore>
+    <CreditReportDate>2025-10-24</CreditReportDate>
+    <CreditRunIndicator>true</CreditRunIndicator>
+  </CREDIT_PROFILE>
+</MISMO_LOAN>

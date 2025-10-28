@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>VA_SIMUL_CLOSE_001</LoanIdentifier>
+    <LoanAmount>375000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>VA</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>100</LoanToValue>
+    <ProductCode>30YR_FIXED</ProductCode>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>10000</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-1000</CashFromToBorrowerAmount>
+      <PITIAmount>2400</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>NC</PropertyState>
+    <PropertyAddress>111 Base Housing, Camp Lejeune, NC 28547</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>James</FirstName>
+    <LastName>Colonel</LastName>
+    <Citizenship>US Citizen</Citizenship>
+    <MaritalStatus>Married</MaritalStatus>
+  </BORROWER>
+  
+  <REO>
+    <PROPERTY>
+      <PropertyAddress>222 Old Base St, Fort Bragg, NC 28310</PropertyAddress>
+      <LinkedToMortgage>true</LinkedToMortgage>
+      <MortgageType>VA</MortgageType>
+      <MarkedToBeSold>true</MarkedToBeSold>
+    </PROPERTY>
+  </REO>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>Bank</AssetType>
+      <AssetAmount>45000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+  
+  <INCOME>
+    <EMPLOYMENT>
+      <EmploymentStatus>Current</EmploymentStatus>
+      <EmployerName>US Marine Corps</EmployerName>
+      <SelfEmployed>false</SelfEmployed>
+      <BaseIncome>72000</BaseIncome>
+      <BorrowerID>B001</BorrowerID>
+    </EMPLOYMENT>
+  </INCOME>
+</MISMO_LOAN>

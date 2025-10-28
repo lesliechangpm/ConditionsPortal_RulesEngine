@@ -262,6 +262,50 @@
             border-radius: 6px;
             margin-bottom: 20px;
         }
+
+        .export-section {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .export-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .export-btn {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .export-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .export-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .export-btn.json { background: linear-gradient(135deg, #6f42c1 0%, #e83e8c 100%); }
+        .export-btn.csv { background: linear-gradient(135deg, #fd7e14 0%, #ffc107 100%); }
+        .export-btn.excel { background: linear-gradient(135deg, #20c997 0%, #0dcaf0 100%); }
+        .export-btn.html { background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%); }
         
         .error {
             background: #f8d7da;
@@ -440,6 +484,9 @@
         function displayResults(data) {
             const { loanId, evaluationDate, conditions, totalConditions } = data;
             
+            // Store results globally for export
+            window.currentResults = data;
+            
             results.innerHTML = `
                 <div class="loan-info">
                     <h3>📋 Loan Information</h3>
@@ -451,6 +498,25 @@
                 <div class="summary">
                     <strong>📊 Summary:</strong> Found ${totalConditions} applicable condition${totalConditions !== 1 ? 's' : ''}
                     ${totalConditions > 0 ? 'grouped by loan lifecycle stage' : ''}
+                </div>
+
+                <div class="export-section">
+                    <h3>📥 Export Results</h3>
+                    <p>Download the loan conditions report in your preferred format:</p>
+                    <div class="export-buttons">
+                        <button class="export-btn json" onclick="exportResults('json')">
+                            📄 JSON
+                        </button>
+                        <button class="export-btn csv" onclick="exportResults('csv')">
+                            📊 CSV
+                        </button>
+                        <button class="export-btn excel" onclick="exportResults('excel')">
+                            📈 Excel
+                        </button>
+                        <button class="export-btn html" onclick="exportResults('html')">
+                            🌐 HTML Report
+                        </button>
+                    </div>
                 </div>
 
                 ${generateStageSection('PTD', 'Prior to Docs', conditions.PTD, '#667eea')}
@@ -528,6 +594,78 @@
         function hideError() {
             errorMsg.style.display = 'none';
         }
+
+        // Export functionality
+        async function exportResults(format) {
+            if (!window.currentResults) {
+                showError('No results available to export. Please evaluate a loan first.');
+                return;
+            }
+
+            try {
+                // Disable all export buttons during export
+                const exportButtons = document.querySelectorAll('.export-btn');
+                exportButtons.forEach(btn => {
+                    btn.disabled = true;
+                    btn.innerHTML = btn.innerHTML.replace(/📄|📊|📈|🌐/, '⏳');
+                });
+
+                const response = await fetch('/api/loans/export', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        results: window.currentResults,
+                        format: format
+                    })
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || 'Export failed');
+                }
+
+                // Get filename from response headers
+                const contentDisposition = response.headers.get('Content-Disposition');
+                let filename = `loan-conditions.${format === 'excel' ? 'xlsx' : format}`;
+                if (contentDisposition) {
+                    const filenameMatch = contentDisposition.match(/filename="(.+)"/);
+                    if (filenameMatch) {
+                        filename = filenameMatch[1];
+                    }
+                }
+
+                // Create blob and download
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+
+                console.log(`Successfully exported results as ${format}`);
+
+            } catch (error) {
+                console.error('Export error:', error);
+                showError(`Failed to export ${format.toUpperCase()} file: ${error.message}`);
+            } finally {
+                // Re-enable export buttons
+                const exportButtons = document.querySelectorAll('.export-btn');
+                exportButtons.forEach((btn, index) => {
+                    btn.disabled = false;
+                    const icons = ['📄', '📊', '📈', '🌐'];
+                    const formats = ['JSON', 'CSV', 'Excel', 'HTML Report'];
+                    btn.innerHTML = `${icons[index]} ${formats[index]}`;
+                });
+            }
+        }
+
+        // Make exportResults available globally
+        window.exportResults = exportResults;
         
         }); // End DOMContentLoaded
     </script>

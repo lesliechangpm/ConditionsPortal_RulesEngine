@@ -7,9 +7,14 @@
       "Bash(npm run dev:*)",
       "Bash(curl:*)",
       "Bash(npm install:*)",
-      "Bash(npm run test:interface:*)"
+      "Bash(npm run test:interface:*)",
+      "Bash(cat:*)",
+      "Bash(node:*)"
     ],
     "deny": [],
-    "ask": []
+    "ask": [],
+    "additionalDirectories": [
+      "C:\\c\\GitHub"
+    ]
   }
 }

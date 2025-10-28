@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>CONV_REO_SOLD_001</LoanIdentifier>
+    <LoanAmount>425000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>Conv</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>85</LoanToValue>
+    <ProductCode>30YR_FIXED</ProductCode>
+    <AUSResult>Approved</AUSResult>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>15000</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-2500</CashFromToBorrowerAmount>
+      <PITIAmount>2850</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>TX</PropertyState>
+    <PropertyAddress>456 New Home Drive, Austin, TX 78701</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>Michael</FirstName>
+    <LastName>Seller</LastName>
+    <Citizenship>US Citizen</Citizenship>
+    <MaritalStatus>Married</MaritalStatus>
+  </BORROWER>
+  
+  <REO>
+    <PROPERTY>
+      <PropertyAddress>123 Old House Lane, Dallas, TX 75201</PropertyAddress>
+      <PropertyType>SingleFamily</PropertyType>
+      <PropertyState>TX</PropertyState>
+      <PropertyValue>285000</PropertyValue>
+      <LinkedToMortgage>true</LinkedToMortgage>
+      <MortgageType>Conv</MortgageType>
+      <MortgageBalance>145000</MortgageBalance>
+      <MarkedToBeSold>true</MarkedToBeSold>
+      <PaidOffAtClosing>true</PaidOffAtClosing>
+      <MonthlyRent>0</MonthlyRent>
+      <MonthlyPayment>1250</MonthlyPayment>
+      <BorrowerID>B001</BorrowerID>
+    </PROPERTY>
+    
+    <PROPERTY>
+      <PropertyAddress>789 Investment Ave, Houston, TX 77001</PropertyAddress>
+      <PropertyType>Condominium</PropertyType>
+      <PropertyState>TX</PropertyState>
+      <PropertyValue>195000</PropertyValue>
+      <LinkedToMortgage>false</LinkedToMortgage>
+      <MarkedToBeSold>true</MarkedToBeSold>
+      <PaidOffAtClosing>false</PaidOffAtClosing>
+      <MonthlyRent>1800</MonthlyRent>
+      <MonthlyPayment>0</MonthlyPayment>
+      <BorrowerID>B001</BorrowerID>
+    </PROPERTY>
+  </REO>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>Bank</AssetType>
+      <AssetAmount>75000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+    
+    <ASSET>
+      <AssetType>CheckingAccount</AssetType>
+      <AssetAmount>25000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+  
+  <INCOME>
+    <EMPLOYMENT>
+      <EmploymentStatus>Current</EmploymentStatus>
+      <EmployerName>Texas Tech Solutions</EmployerName>
+      <SelfEmployed>false</SelfEmployed>
+      <BaseIncome>95000</BaseIncome>
+      <BorrowerID>B001</BorrowerID>
+    </EMPLOYMENT>
+    
+    <OTHER_INCOME>
+      <IncomeType>Rental Income</IncomeType>
+      <MonthlyAmount>1800</MonthlyAmount>
+      <Duration>12</Duration>
+      <Source>789 Investment Ave</Source>
+      <BorrowerID>B001</BorrowerID>
+    </OTHER_INCOME>
+  </INCOME>
+  
+  <CREDIT_PROFILE>
+    <CreditScore>740</CreditScore>
+    <CreditReportDate>2025-10-20</CreditReportDate>
+  </CREDIT_PROFILE>
+</MISMO_LOAN>

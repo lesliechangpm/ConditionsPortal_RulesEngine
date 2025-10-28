@@ -13,6 +13,7 @@ app.use(helmet({
       defaultSrc: ["'self'"],
       styleSrc: ["'self'", "'unsafe-inline'"],
       scriptSrc: ["'self'", "'unsafe-inline'"],
+      scriptSrcAttr: ["'unsafe-inline'"],
       imgSrc: ["'self'", "data:"],
     },
   },
@@ -60,6 +61,8 @@ app.get('/api/health', loanController.healthCheck);
 // Loan evaluation routes
 app.post('/api/loans/evaluate', upload.single('loanFile'), loanController.evaluateLoan);
 app.post('/api/loans/validate', loanController.validateLoanData);
+app.post('/api/loans/export', loanController.exportLoanConditions);
+app.get('/api/loans/export/formats', loanController.getExportFormats);
 
 // Condition management routes
 app.get('/api/conditions/stats', loanController.getConditionStats);
@@ -77,6 +80,8 @@ app.get('/api', (_req, res) => {
       'GET /api/health': 'Health check and service status',
       'POST /api/loans/evaluate': 'Upload MISMO XML file and get applicable conditions',
       'POST /api/loans/validate': 'Validate loan data structure',
+      'POST /api/loans/export': 'Export loan conditions in various formats (JSON, CSV, Excel, HTML)',
+      'GET /api/loans/export/formats': 'Get available export formats',
       'GET /api/conditions/stats': 'Get condition statistics',
       'GET /api/conditions/search?q=term': 'Search conditions by term',
       'GET /api/conditions/:code': 'Get specific condition details',

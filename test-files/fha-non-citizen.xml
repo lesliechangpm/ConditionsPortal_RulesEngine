@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>FHA_NON_CITIZEN_001</LoanIdentifier>
+    <LoanAmount>285000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>FHA</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>96.5</LoanToValue>
+    <ProductCode>30YR_FIXED</ProductCode>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>12000</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-800</CashFromToBorrowerAmount>
+      <PITIAmount>1850</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>Townhouse</PropertyType>
+    <PropertyState>AZ</PropertyState>
+    <PropertyAddress>444 Desert View, Phoenix, AZ 85001</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>Ana</FirstName>
+    <LastName>Rodriguez</LastName>
+    <Citizenship>Permanent Resident</Citizenship>
+    <MaritalStatus>Single</MaritalStatus>
+  </BORROWER>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>Bank</AssetType>
+      <AssetAmount>35000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+  
+  <INCOME>
+    <OTHER_INCOME>
+      <IncomeType>Alimony</IncomeType>
+      <MonthlyAmount>1200</MonthlyAmount>
+      <BorrowerID>B001</BorrowerID>
+    </OTHER_INCOME>
+  </INCOME>
+</MISMO_LOAN>

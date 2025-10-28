@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>FHA_BK_ALIMONY_001</LoanIdentifier>
+    <LoanAmount>265000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>FHA</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>96.5</LoanToValue>
+    <ProductCode>30YR_FIXED</ProductCode>
+    <AUSResult>Refer/Eligible</AUSResult>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>7500</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-950</CashFromToBorrowerAmount>
+      <PITIAmount>1825</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>Townhouse</PropertyType>
+    <PropertyState>GA</PropertyState>
+    <PropertyAddress>987 Recovery Lane, Atlanta, GA 30301</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>Rebecca</FirstName>
+    <LastName>Phoenix</LastName>
+    <Citizenship>Visa Citizen</Citizenship>
+    <MaritalStatus>Divorced</MaritalStatus>
+    
+    <DECLARATIONS>
+      <BankruptcyIndicator>true</BankruptcyIndicator>
+      <BankruptcyType>Chapter 7</BankruptcyType>
+      <BankruptcyDate>2021-03-15</BankruptcyDate>
+      <BankruptcyDischargeDate>2021-09-15</BankruptcyDischargeDate>
+    </DECLARATIONS>
+  </BORROWER>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>Bank</AssetType>
+      <AssetAmount>22000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+  
+  <INCOME>
+    <EMPLOYMENT>
+      <EmploymentStatus>Current</EmploymentStatus>
+      <EmployerName>Healthcare Solutions Inc</EmployerName>
+      <SelfEmployed>false</SelfEmployed>
+      <BaseIncome>48000</BaseIncome>
+      <BorrowerID>B001</BorrowerID>
+    </EMPLOYMENT>
+    
+    <OTHER_INCOME>
+      <IncomeType>Alimony</IncomeType>
+      <MonthlyAmount>1800</MonthlyAmount>
+      <Duration>60</Duration>
+      <BorrowerID>B001</BorrowerID>
+      <Documentation>
+        <DivorceDecree>true</DivorceDecree>
+        <CourtOrder>true</CourtOrder>
+        <PaymentHistory>true</PaymentHistory>
+      </Documentation>
+    </OTHER_INCOME>
+    
+    <OTHER_INCOME>
+      <IncomeType>Child Support</IncomeType>
+      <MonthlyAmount>650</MonthlyAmount>
+      <Duration>36</Duration>
+      <BorrowerID>B001</BorrowerID>
+      <Documentation>
+        <DivorceDecree>true</DivorceDecree>
+        <CourtOrder>true</CourtOrder>
+        <PaymentHistory>true</PaymentHistory>
+      </Documentation>
+    </OTHER_INCOME>
+  </INCOME>
+  
+  <CREDIT_PROFILE>
+    <CreditScore>620</CreditScore>
+    <CreditReportDate>2025-10-15</CreditReportDate>
+    <PostBankruptcyCredit>
+      <NewCreditAccounts>3</NewCreditAccounts>
+      <PaymentHistory>Satisfactory</PaymentHistory>
+      <TimeSinceBankruptcy>42</TimeSinceBankruptcy>
+    </PostBankruptcyCredit>
+  </CREDIT_PROFILE>
+</MISMO_LOAN>

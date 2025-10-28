@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import csv from 'csv-parser';
 import { LoanCondition } from '../types';
+import { LoanTypeFilter } from './LoanTypeFilter';
 
 export class ConditionsLoader {
   private conditions: LoanCondition[] = [];
@@ -67,6 +68,16 @@ export class ConditionsLoader {
               byteFilter: row.byteFilter?.trim() || undefined
             };
             
+            // Parse and store supported loan types
+            const constraints = LoanTypeFilter.parseConditionConstraints(condition);
+            if (constraints.length > 0) {
+              const allTypes = constraints.flatMap(c => c.supportedTypes);
+              condition.supportedLoanTypes = [...new Set(allTypes)];
+            } else {
+              // If no constraints found, assume applies to all loan types
+              condition.supportedLoanTypes = ['Conv', 'FHA', 'VA', 'USDA', 'Non-QM'];
+            }
+            
             conditions.push(condition);
           }
         })
@@ -117,5 +128,23 @@ export class ConditionsLoader {
       summary[condition.stage] = (summary[condition.stage] || 0) + 1;
     });
     return summary;
+  }
+
+  getLoanTypeSummary(): Record<string, number> {
+    const summary: Record<string, number> = {};
+    this.conditions.forEach(condition => {
+      if (condition.supportedLoanTypes) {
+        condition.supportedLoanTypes.forEach(loanType => {
+          summary[loanType] = (summary[loanType] || 0) + 1;
+        });
+      }
+    });
+    return summary;
+  }
+
+  getConditionsByLoanType(loanType: string): LoanCondition[] {
+    return this.conditions.filter(condition => 
+      condition.supportedLoanTypes?.includes(loanType as any)
+    );
   }
 }

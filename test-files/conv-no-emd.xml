@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>CONV_NO_EMD_001</LoanIdentifier>
+    <LoanAmount>425000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>Conv</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>80</LoanToValue>
+    <ProductCode>30YR_FIXED</ProductCode>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>0</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-5000</CashFromToBorrowerAmount>
+      <PITIAmount>2750</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>WA</PropertyState>
+    <PropertyAddress>777 Pine Ave, Seattle, WA 98101</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>Jennifer</FirstName>
+    <LastName>Tech</LastName>
+    <Citizenship>US Citizen</Citizenship>
+    <MaritalStatus>Single</MaritalStatus>
+  </BORROWER>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>Bank</AssetType>
+      <AssetAmount>125000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+  
+  <INCOME>
+    <EMPLOYMENT>
+      <EmploymentStatus>Current</EmploymentStatus>
+      <EmployerName>Tech Corp</EmployerName>
+      <SelfEmployed>false</SelfEmployed>
+      <BaseIncome>95000</BaseIncome>
+      <BorrowerID>B001</BorrowerID>
+    </EMPLOYMENT>
+  </INCOME>
+</MISMO_LOAN>

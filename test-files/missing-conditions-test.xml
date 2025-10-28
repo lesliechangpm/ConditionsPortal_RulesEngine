@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>MISSING_CONDITIONS_001</LoanIdentifier>
+    <LoanAmount>400000</LoanAmount>
+    <LoanPurpose>Refinance</LoanPurpose>
+    <MortgageType>FHA</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>75</LoanToValue>
+    <ProductCode>30YR_FIXED_FHA_NEW_CONST</ProductCode>
+    <NewConstruction>true</NewConstruction>
+    <AUSResult>Approved</AUSResult>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>3000</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-1200</CashFromToBorrowerAmount>
+      <PITIAmount>2800</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>TX</PropertyState>
+    <NewConstruction>true</NewConstruction>
+    <PropertyAddress>789 New Construction Way, Dallas, TX 75201</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>Marcus</FirstName>
+    <LastName>SelfEmployedOwner</LastName>
+    <Citizenship>US Citizen</Citizenship>
+    <MaritalStatus>Married</MaritalStatus>
+    <SelfEmployed>true</SelfEmployed>
+    
+    <DECLARATIONS>
+      <BankruptcyIndicator>false</BankruptcyIndicator>
+    </DECLARATIONS>
+  </BORROWER>
+  
+  <!-- REO Property to be sold - triggers CRED301 -->
+  <REO>
+    <PROPERTY>
+      <PropertyAddress>456 To Be Sold Street, Houston, TX 77002</PropertyAddress>
+      <PropertyType>SingleFamily</PropertyType>
+      <PropertyState>TX</PropertyState>
+      <PropertyValue>250000</PropertyValue>
+      <LinkedToMortgage>true</LinkedToMortgage>
+      <MortgageType>Conv</MortgageType>
+      <MortgageBalance>120000</MortgageBalance>
+      <MarkedToBeSold>true</MarkedToBeSold>
+      <PaidOffAtClosing>true</PaidOffAtClosing>
+      <MonthlyRent>0</MonthlyRent>
+      <MonthlyPayment>950</MonthlyPayment>
+      <BorrowerID>B001</BorrowerID>
+    </PROPERTY>
+  </REO>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>Bank</AssetType>
+      <AssetAmount>85000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+  
+  <!-- Self-employed with high ownership percentage - triggers INC408 -->
+  <INCOME>
+    <EMPLOYMENT>
+      <EmploymentStatus>Current</EmploymentStatus>
+      <EmployerName>Marcus Construction LLC</EmployerName>
+      <SelfEmployed>true</SelfEmployed>
+      <BaseIncome>120000</BaseIncome>
+      <OwnershipShare>75</OwnershipShare>
+      <EmployedByFamily>false</EmployedByFamily>
+      <BorrowerID>B001</BorrowerID>
+    </EMPLOYMENT>
+  </INCOME>
+  
+  <!-- Credit run indicator - triggers CRED320 -->
+  <CREDIT_PROFILE>
+    <CreditScore>680</CreditScore>
+    <CreditReportDate>2025-10-25</CreditReportDate>
+    <CreditRunIndicator>true</CreditRunIndicator>
+  </CREDIT_PROFILE>
+</MISMO_LOAN>

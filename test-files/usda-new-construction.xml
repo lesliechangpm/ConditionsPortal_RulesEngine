@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>USDA_NEW_CONST_001</LoanIdentifier>
+    <LoanAmount>310000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>USDA</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>100</LoanToValue>
+    <ProductCode>30YR_FIXED</ProductCode>
+    <NewConstruction>true</NewConstruction>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>2500</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-200</CashFromToBorrowerAmount>
+      <PITIAmount>1975</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>AL</PropertyState>
+    <PropertyAddress>999 Farm Road, Montgomery, AL 36101</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>Lisa</FirstName>
+    <LastName>Country</LastName>
+    <Citizenship>US Citizen</Citizenship>
+    <MaritalStatus>Married</MaritalStatus>
+  </BORROWER>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>Bank</AssetType>
+      <AssetAmount>18000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+  
+  <INCOME>
+    <EMPLOYMENT>
+      <EmploymentStatus>Current</EmploymentStatus>
+      <EmployerName>Rural Electric Coop</EmployerName>
+      <SelfEmployed>false</SelfEmployed>
+      <BaseIncome>52000</BaseIncome>
+      <BorrowerID>B001</BorrowerID>
+    </EMPLOYMENT>
+  </INCOME>
+</MISMO_LOAN>

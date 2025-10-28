@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>EMD_TEST_1000</LoanIdentifier>
+    <LoanAmount>400000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>Conv</MortgageType>
+    <LienPosition>1</LienPosition>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>1000</EarnestMoneyDepositAmount>
+      <PITIAmount>2800</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+</MISMO_LOAN>

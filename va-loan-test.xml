@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>VA_LOAN_001</LoanIdentifier>
+    <LoanAmount>450000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>VA</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>90</LoanToValue>
+    <ProductCode>30YR_FIXED</ProductCode>
+    <NewConstruction>true</NewConstruction>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>20000</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-500</CashFromToBorrowerAmount>
+      <PITIAmount>3200</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>TX</PropertyState>
+    <PropertyAddress>456 Military St, Fort Worth, TX 76107</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>John</FirstName>
+    <LastName>Veteran</LastName>
+    <Citizenship>US Citizen</Citizenship>
+    <MaritalStatus>Married</MaritalStatus>
+  </BORROWER>
+</MISMO_LOAN>

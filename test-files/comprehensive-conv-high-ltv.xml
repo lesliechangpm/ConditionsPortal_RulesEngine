@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>CONV_HIGH_LTV_001</LoanIdentifier>
+    <LoanAmount>500000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>Conv</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>95</LoanToValue>
+    <ProductCode>30YR_FIXED</ProductCode>
+    <NewConstruction>false</NewConstruction>
+    <AUSResult>Approved</AUSResult>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>25000</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-3000</CashFromToBorrowerAmount>
+      <PITIAmount>3200</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>CA</PropertyState>
+    <PropertyAddress>123 High Value St, Los Angeles, CA 90210</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>Jennifer</FirstName>
+    <LastName>Executive</LastName>
+    <Citizenship>US Citizen</Citizenship>
+    <MaritalStatus>Divorced</MaritalStatus>
+    <SelfEmployed>false</SelfEmployed>
+    
+    <DECLARATIONS>
+      <BankruptcyIndicator>false</BankruptcyIndicator>
+    </DECLARATIONS>
+  </BORROWER>
+  
+  <REO>
+    <PROPERTY>
+      <PropertyAddress>789 Rental Property Ave, San Diego, CA 92101</PropertyAddress>
+      <PropertyType>Condominium</PropertyType>
+      <PropertyState>CA</PropertyState>
+      <PropertyValue>400000</PropertyValue>
+      <LinkedToMortgage>true</LinkedToMortgage>
+      <MortgageType>Conv</MortgageType>
+      <MortgageBalance>200000</MortgageBalance>
+      <MarkedToBeSold>false</MarkedToBeSold>
+      <PaidOffAtClosing>false</PaidOffAtClosing>
+      <MonthlyRent>3200</MonthlyRent>
+      <MonthlyPayment>1800</MonthlyPayment>
+      <BorrowerID>B001</BorrowerID>
+    </PROPERTY>
+    
+    <PROPERTY>
+      <PropertyAddress>456 Investment Blvd, Sacramento, CA 95814</PropertyAddress>
+      <PropertyType>SingleFamily</PropertyType>
+      <PropertyState>CA</PropertyState>
+      <PropertyValue>350000</PropertyValue>
+      <LinkedToMortgage>false</LinkedToMortgage>
+      <MarkedToBeSold>true</MarkedToBeSold>
+      <PaidOffAtClosing>false</PaidOffAtClosing>
+      <MonthlyRent>2800</MonthlyRent>
+      <MonthlyPayment>0</MonthlyPayment>
+      <BorrowerID>B001</BorrowerID>
+    </PROPERTY>
+  </REO>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>Bank</AssetType>
+      <AssetAmount>125000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+    
+    <ASSET>
+      <AssetType>CheckingAccount</AssetType>
+      <AssetAmount>45000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+    
+    <ASSET>
+      <AssetType>Retirement</AssetType>
+      <AssetAmount>250000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+  
+  <INCOME>
+    <EMPLOYMENT>
+      <EmploymentStatus>Current</EmploymentStatus>
+      <EmployerName>Tech Corporation Inc</EmployerName>
+      <SelfEmployed>false</SelfEmployed>
+      <BaseIncome>145000</BaseIncome>
+      <EmployedByFamily>false</EmployedByFamily>
+      <BorrowerID>B001</BorrowerID>
+    </EMPLOYMENT>
+    
+    <OTHER_INCOME>
+      <IncomeType>Alimony</IncomeType>
+      <MonthlyAmount>2500</MonthlyAmount>
+      <Duration>60</Duration>
+      <BorrowerID>B001</BorrowerID>
+    </OTHER_INCOME>
+    
+    <OTHER_INCOME>
+      <IncomeType>Child Support</IncomeType>
+      <MonthlyAmount>1200</MonthlyAmount>
+      <Duration>72</Duration>
+      <BorrowerID>B001</BorrowerID>
+    </OTHER_INCOME>
+    
+    <OTHER_INCOME>
+      <IncomeType>Rental Income</IncomeType>
+      <MonthlyAmount>6000</MonthlyAmount>
+      <Duration>12</Duration>
+      <Source>Combined rental from REO properties</Source>
+      <BorrowerID>B001</BorrowerID>
+    </OTHER_INCOME>
+  </INCOME>
+  
+  <CREDIT_PROFILE>
+    <CreditScore>780</CreditScore>
+    <CreditReportDate>2025-10-25</CreditReportDate>
+  </CREDIT_PROFILE>
+</MISMO_LOAN>

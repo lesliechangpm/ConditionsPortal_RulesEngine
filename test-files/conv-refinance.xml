@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>CONV_REFI_001</LoanIdentifier>
+    <LoanAmount>380000</LoanAmount>
+    <LoanPurpose>Refinance</LoanPurpose>
+    <MortgageType>Conv</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>75</LoanToValue>
+    <ProductCode>30YR_FIXED</ProductCode>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>0</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>15000</CashFromToBorrowerAmount>
+      <PITIAmount>2450</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>NY</PropertyState>
+    <PropertyAddress>555 Oak Street, Albany, NY 12201</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>Michael</FirstName>
+    <LastName>Johnson</LastName>
+    <Citizenship>US Citizen</Citizenship>
+    <MaritalStatus>Married</MaritalStatus>
+  </BORROWER>
+  
+  <REO>
+    <PROPERTY>
+      <PropertyAddress>123 Previous St, Albany, NY 12202</PropertyAddress>
+      <LinkedToMortgage>true</LinkedToMortgage>
+      <PayoffAtClosing>true</PayoffAtClosing>
+    </PROPERTY>
+  </REO>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>Bank</AssetType>
+      <AssetAmount>95000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+</MISMO_LOAN>

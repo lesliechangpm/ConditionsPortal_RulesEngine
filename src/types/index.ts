@@ -18,6 +18,7 @@ export interface LoanCondition {
   dataForLogic?: string; // Column Q1
   logicToApply?: string; // Column Q2
   byteFilter?: string; // Column R
+  supportedLoanTypes?: string[]; // Parsed from rules (Conv, FHA, VA, USDA, etc.)
 }
 
 export interface ApplicableCondition {
@@ -28,6 +29,7 @@ export interface ApplicableCondition {
   documentProvider: string;
   category: string;
   dynamicFields?: Record<string, string>;
+  reasonApplied?: string; // Why this condition was applied (e.g., "EMD >= $1", "Loan Type = VA")
 }
 
 export interface ConditionResult {
@@ -61,6 +63,9 @@ export interface LoanData {
   marriageStatus?: string;
   selfEmployed?: boolean;
   bankruptcy?: boolean;
+  hasAlimonyIncome?: boolean;
+  hasChildSupportIncome?: boolean;
+  hasBankAssets?: boolean;
   
   // Financial information
   earnestMoneyDeposit?: number;
@@ -104,8 +109,28 @@ export interface RuleEvaluationContext {
   condition: LoanCondition;
 }
 
+export interface RuleEvaluationResult {
+  applies: boolean;
+  reason?: string;
+}
+
 export interface RuleParser {
   evaluate(context: RuleEvaluationContext): boolean;
 }
 
 export type Stage = 'PTD' | 'PTF' | 'POST';
+
+export type LoanType = 'Conv' | 'FHA' | 'VA' | 'USDA' | 'Non-QM';
+
+export interface LoanTypeConstraint {
+  conditionCode: string;
+  supportedTypes: LoanType[];
+  constraint: string; // Original constraint text
+  source: 'rules' | 'logic'; // Whether from Column C or Column Q
+}
+
+export interface LoanTypeFilterResult {
+  applicable: LoanCondition[];
+  filtered: LoanCondition[];
+  filterReasons: Record<string, string>; // conditionCode -> reason for filtering
+}

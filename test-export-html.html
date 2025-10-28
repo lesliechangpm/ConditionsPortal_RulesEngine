@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Loan Conditions Report</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            margin: 20px; 
+            line-height: 1.4;
+        }
+        .header { 
+            text-align: center; 
+            margin-bottom: 30px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+        }
+        .loan-info { 
+            background-color: #f5f5f5; 
+            padding: 15px; 
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .stage-section { 
+            margin-bottom: 30px; 
+            page-break-inside: avoid;
+        }
+        .stage-header { 
+            background-color: #4CAF50; 
+            color: white; 
+            padding: 10px; 
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .condition { 
+            border: 1px solid #ddd; 
+            margin-bottom: 10px; 
+            padding: 15px;
+            background-color: white;
+        }
+        .condition-header { 
+            font-weight: bold; 
+            margin-bottom: 8px;
+            color: #333;
+        }
+        .condition-code { 
+            color: #2196F3; 
+            font-weight: bold;
+        }
+        .condition-class { 
+            background-color: #e0e0e0; 
+            padding: 2px 6px; 
+            border-radius: 3px; 
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        .condition-provider { 
+            background-color: #ff9800; 
+            color: white; 
+            padding: 2px 6px; 
+            border-radius: 3px; 
+            font-size: 12px;
+            margin-left: 5px;
+        }
+        .description { 
+            margin: 10px 0; 
+            line-height: 1.5;
+        }
+        .borrower-description { 
+            background-color: #fff3e0; 
+            padding: 8px; 
+            border-left: 3px solid #ff9800; 
+            margin-top: 8px;
+            font-style: italic;
+        }
+        .summary { 
+            background-color: #e3f2fd; 
+            padding: 15px; 
+            border-radius: 5px; 
+            margin-bottom: 20px;
+        }
+        .no-conditions {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            padding: 20px;
+        }
+        @media print {
+            body { margin: 10px; }
+            .stage-section { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏦 Loan Conditions Report</h1>
+        <p>Comprehensive evaluation of applicable loan conditions</p>
+    </div>
+
+    <div class="loan-info">
+        <h3>📋 Loan Information</h3>
+        <p><strong>Loan ID:</strong> DEMO_LOAN_001</p>
+        <p><strong>Evaluation Date:</strong> 10/27/2025, 11:07:46 AM</p>
+        <p><strong>File Processed:</strong> MISMO XML Loan File</p>
+    </div>
+
+    <div class="summary">
+        <strong>📊 Summary:</strong> Found 2 applicable conditions 
+        grouped by loan lifecycle stage
+    </div>
+
+    <div class="stage-section">
+        <div class="stage-header">
+            Prior to Docs (PTD) - 2 conditions
+        </div>
+
+        <div class="condition">
+            <div class="condition-header">
+                <span class="condition-code">APP102</span>
+                <span class="condition-class">Processor III</span>
+                <span class="condition-provider">INT</span>
+            </div>
+            <div class="description">
+                CMG Lender requires mortgage insurance coverage.
+            </div>
+            
+            <div class="borrower-description">
+                <strong>For Borrower:</strong> Please provide mortgage insurance documentation.
+            </div>
+            
+            <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                <strong>Category:</strong> Loan
+            </div>
+        </div>
+
+        <div class="condition">
+            <div class="condition-header">
+                <span class="condition-code">CRED324</span>
+                <span class="condition-class">UW</span>
+                <span class="condition-provider">INT</span>
+            </div>
+            <div class="description">
+                Underwriter must confirm the approved credit report scores match the scores in the credit score disclosure screen.
+            </div>
+            
+            <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                <strong>Category:</strong> Credit
+            </div>
+        </div>
+    </div>
+
+    <div class="stage-section">
+        <div class="stage-header">
+            Prior to Funding (PTF) - 0 conditions
+        </div>
+
+        <div class="no-conditions">
+            ✅ No conditions required for this stage
+        </div>
+    </div>
+
+    <div class="stage-section">
+        <div class="stage-header">
+            Post Funding (POST) - 0 conditions
+        </div>
+
+        <div class="no-conditions">
+            ✅ No conditions required for this stage
+        </div>
+    </div>
+
+    <div style="margin-top: 40px; text-align: center; color: #666; font-size: 12px;">
+        Generated by Loan Conditions Rules Engine - 10/27/2025, 11:12:22 AM
+    </div>
+</body>
+</html>

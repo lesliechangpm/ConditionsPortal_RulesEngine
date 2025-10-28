@@ -32,6 +32,7 @@ export class MismoParser {
       this.extractAssetsAndIncome(jsonObj, loanData);
       this.extractRealEstateOwned(jsonObj, loanData);
       this.extractUnderwritingInfo(jsonObj, loanData);
+      this.extractCreditInfo(jsonObj, loanData);
       
       return loanData;
     } catch (error) {
@@ -53,6 +54,10 @@ export class MismoParser {
         loanData.lienPosition = this.getNumericValue(loan, ['@_LienPriorityType', 'LienPosition']);
         loanData.ltv = this.getNumericValue(loan, ['@_LoanToValuePercent', 'LTV', 'LoanToValue']);
         loanData.productCode = this.getValue(loan, ['@_ProductCode', 'ProductCode']);
+        loanData.vaRefiType = this.getValue(loan, ['@_VARefiType', 'VARefiType']);
+        loanData.newConstruction = this.getBooleanValue(loan, ['@_NewConstructionIndicator', 'NewConstruction']);
+        loanData.ausResult = this.getValue(loan, ['@_AUSResult', 'AUSResult']);
+        loanData.creditRunIndicator = this.getBooleanValue(loan, ['@_CreditRunIndicator', 'CreditRunIndicator']);
       }
     } catch (error) {
       console.warn('Warning extracting loan info:', error);
@@ -87,9 +92,9 @@ export class MismoParser {
         loanData.selfEmployed = this.getBooleanValue(borrower, ['@_SelfEmployedIndicator', 'SelfEmployed']);
         
         // Check for bankruptcy declaration
-        const declarations = this.findInObject(borrower, ['DECLARATION', 'Declarations']);
+        const declarations = this.findInObject(borrower, ['DECLARATIONS', 'DECLARATION', 'Declarations']);
         if (declarations) {
-          loanData.bankruptcy = this.getBooleanValue(declarations, ['@_BankruptcyIndicator', 'Bankruptcy']);
+          loanData.bankruptcy = this.getBooleanValue(declarations, ['@_BankruptcyIndicator', 'BankruptcyIndicator']);
         }
       }
     } catch (error) {
@@ -102,7 +107,7 @@ export class MismoParser {
       const financial = this.findInObject(jsonObj, ['FINANCIAL', 'Financial']);
       
       if (financial) {
-        loanData.earnestMoneyDeposit = this.getNumericValue(financial, ['@_EarnestMoneyDepositAmount', 'EarnestMoney']);
+        loanData.earnestMoneyDeposit = this.getNumericValue(financial, ['@_EarnestMoneyDepositAmount', 'EarnestMoneyDepositAmount', 'EarnestMoney']);
         loanData.cashToBorrower = this.getNumericValue(financial, ['@_CashFromToBorrowerAmount', 'CashToBorrower']);
         loanData.monthlyPiti = this.getNumericValue(financial, ['@_PITIAmount', 'PITI', 'MonthlyPayment']);
       }
@@ -117,14 +122,20 @@ export class MismoParser {
       const assets = this.findInObject(jsonObj, ['ASSETS', 'Assets']);
       if (assets) {
         loanData.bankAssets = [];
+        loanData.hasBankAssets = false; // Initialize flag
+        
         const assetArray = Array.isArray(assets) ? assets : [assets];
         
         assetArray.forEach((asset: any) => {
-          if (asset && this.getValue(asset, ['@_AssetType', 'AssetType']) === 'CheckingAccount' || 
-              this.getValue(asset, ['@_AssetType', 'AssetType']) === 'SavingsAccount') {
+          const assetType = this.getValue(asset, ['@_AssetType', 'AssetType']);
+          
+          // Check for bank assets (Bank, CheckingAccount, SavingsAccount)
+          if (asset && (assetType === 'Bank' || assetType === 'CheckingAccount' || assetType === 'SavingsAccount')) {
+            loanData.hasBankAssets = true; // Set flag when any bank asset is found
+            
             loanData.bankAssets?.push({
-              type: this.getValue(asset, ['@_AssetType', 'AssetType']) || 'Bank',
-              amount: this.getNumericValue(asset, ['@_AssetCashOrMarketValueAmount', 'Amount']) || 0,
+              type: assetType || 'Bank',
+              amount: this.getNumericValue(asset, ['@_AssetCashOrMarketValueAmount', 'AssetAmount', 'Amount']) || 0,
               borrowerId: this.getValue(asset, ['@_BorrowerID', 'BorrowerID'])
             });
           }
@@ -135,18 +146,79 @@ export class MismoParser {
       const income = this.findInObject(jsonObj, ['INCOME', 'Income']);
       if (income) {
         loanData.income = [];
-        const incomeArray = Array.isArray(income) ? income : [income];
+        loanData.hasAlimonyIncome = false; // Initialize flags
+        loanData.hasChildSupportIncome = false;
         
-        incomeArray.forEach((inc: any) => {
-          if (inc) {
-            loanData.income?.push({
-              type: this.getValue(inc, ['@_IncomeType', 'IncomeType']) || 'Unknown',
+        // Handle both direct income objects and nested structures
+        const incomeItems: any[] = [];
+        
+        // Check for employment income
+        const employment = this.findInObject(income, ['EMPLOYMENT', 'Employment']);
+        if (employment) {
+          const empArray = Array.isArray(employment) ? employment : [employment];
+          incomeItems.push(...empArray.map(emp => ({
+            type: 'Employment',
+            amount: this.getNumericValue(emp, ['@_BaseIncome', 'BaseIncome']),
+            source: this.getValue(emp, ['@_EmployerName', 'EmployerName']) || 'Employment',
+            borrowerId: this.getValue(emp, ['@_BorrowerID', 'BorrowerID']),
+            ownershipShare: this.getNumericValue(emp, ['@_OwnershipShare', 'OwnershipShare']),
+            employedByFamily: this.getBooleanValue(emp, ['@_EmployedByFamily', 'EmployedByFamily'])
+          })));
+        }
+        
+        // Check for other income types (including alimony)
+        const otherIncome = this.findInObject(income, ['OTHER_INCOME', 'OtherIncome']);
+        if (otherIncome) {
+          const otherArray = Array.isArray(otherIncome) ? otherIncome : [otherIncome];
+          otherArray.forEach((inc: any) => {
+            if (inc) {
+              const incomeType = this.getValue(inc, ['@_IncomeType', 'IncomeType']);
+              const monthlyAmount = this.getNumericValue(inc, ['@_MonthlyAmount', 'MonthlyAmount']);
+              
+              // Check for special income types
+              if (incomeType) {
+                const lowerType = incomeType.toLowerCase();
+                if (lowerType === 'alimony') {
+                  loanData.hasAlimonyIncome = true;
+                } else if (lowerType === 'child support') {
+                  loanData.hasChildSupportIncome = true;
+                }
+              }
+              
+              incomeItems.push({
+                type: incomeType || 'Unknown',
+                amount: monthlyAmount || 0,
+                source: incomeType || 'Other',
+                borrowerId: this.getValue(inc, ['@_BorrowerID', 'BorrowerID'])
+              });
+            }
+          });
+        }
+        
+        // Handle direct income array if present
+        const directIncome = Array.isArray(income) ? income : (income.INCOME_DETAIL ? [income] : []);
+        directIncome.forEach((inc: any) => {
+          if (inc && inc !== employment && inc !== otherIncome) {
+            const incomeType = this.getValue(inc, ['@_IncomeType', 'IncomeType']);
+            if (incomeType) {
+              const lowerType = incomeType.toLowerCase();
+              if (lowerType === 'alimony') {
+                loanData.hasAlimonyIncome = true;
+              } else if (lowerType === 'child support') {
+                loanData.hasChildSupportIncome = true;
+              }
+            }
+            
+            incomeItems.push({
+              type: incomeType || 'Unknown',
               amount: this.getNumericValue(inc, ['@_IncomeAmount', 'Amount']) || 0,
               source: this.getValue(inc, ['@_IncomeSource', 'Source']) || 'Unknown',
               borrowerId: this.getValue(inc, ['@_BorrowerID', 'BorrowerID'])
             });
           }
         });
+        
+        loanData.income = incomeItems.filter(item => item.amount > 0 || item.type !== 'Unknown');
       }
     } catch (error) {
       console.warn('Warning extracting assets and income:', error);
@@ -170,7 +242,8 @@ export class MismoParser {
             loanData.reo?.push({
               address: addressString,
               linkedToMortgage: this.getBooleanValue(property, ['@_LinkedToMortgageIndicator', 'LinkedToMortgage']),
-              paidOffAtClosing: this.getBooleanValue(property, ['@_PaidOffAtClosingIndicator', 'PaidOffAtClosing'])
+              paidOffAtClosing: this.getBooleanValue(property, ['@_PaidOffAtClosingIndicator', 'PaidOffAtClosing']),
+              markedToBeSold: this.getBooleanValue(property, ['@_MarkedToBeSoldIndicator', 'MarkedToBeSold'])
             });
           }
         });
@@ -191,6 +264,19 @@ export class MismoParser {
       }
     } catch (error) {
       console.warn('Warning extracting underwriting info:', error);
+    }
+  }
+
+  private extractCreditInfo(jsonObj: any, loanData: LoanData): void {
+    try {
+      const credit = this.findInObject(jsonObj, ['CREDIT_PROFILE', 'CreditProfile', 'CREDIT']);
+      
+      if (credit) {
+        loanData.creditRunIndicator = this.getBooleanValue(credit, ['@_CreditRunIndicator', 'CreditRunIndicator']);
+        loanData.creditScore = this.getNumericValue(credit, ['@_CreditScore', 'CreditScore']);
+      }
+    } catch (error) {
+      console.warn('Warning extracting credit info:', error);
     }
   }
 

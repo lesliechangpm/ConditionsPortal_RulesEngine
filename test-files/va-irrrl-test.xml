@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>VA_IRRRL_001</LoanIdentifier>
+    <LoanAmount>300000</LoanAmount>
+    <LoanPurpose>Refinance</LoanPurpose>
+    <MortgageType>VA</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>85</LoanToValue>
+    <ProductCode>30YR_FIXED_IRRRL</ProductCode>
+    <VARefiType>IRRRL</VARefiType>
+    <AUSResult>Approved</AUSResult>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>0</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-600</CashFromToBorrowerAmount>
+      <PITIAmount>2100</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>FL</PropertyState>
+    <PropertyAddress>123 IRRRL Street, Tampa, FL 33601</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>David</FirstName>
+    <LastName>VeteranRefi</LastName>
+    <Citizenship>US Citizen</Citizenship>
+    <MaritalStatus>Single</MaritalStatus>
+    <SelfEmployed>false</SelfEmployed>
+    
+    <DECLARATIONS>
+      <BankruptcyIndicator>false</BankruptcyIndicator>
+    </DECLARATIONS>
+  </BORROWER>
+  
+  <REO>
+    <PROPERTY>
+      <PropertyAddress>789 Payoff Property, Orlando, FL 32801</PropertyAddress>
+      <PropertyType>Condominium</PropertyType>
+      <PropertyState>FL</PropertyState>
+      <PropertyValue>200000</PropertyValue>
+      <LinkedToMortgage>true</LinkedToMortgage>
+      <MortgageType>Conv</MortgageType>
+      <MortgageBalance>75000</MortgageBalance>
+      <MarkedToBeSold>true</MarkedToBeSold>
+      <PaidOffAtClosing>true</PaidOffAtClosing>
+      <MonthlyRent>0</MonthlyRent>
+      <MonthlyPayment>650</MonthlyPayment>
+      <BorrowerID>B001</BorrowerID>
+    </PROPERTY>
+  </REO>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>Bank</AssetType>
+      <AssetAmount>45000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+  
+  <INCOME>
+    <EMPLOYMENT>
+      <EmploymentStatus>Current</EmploymentStatus>
+      <EmployerName>Family Business Inc</EmployerName>
+      <SelfEmployed>false</SelfEmployed>
+      <BaseIncome>70000</BaseIncome>
+      <OwnershipShare>30</OwnershipShare>
+      <EmployedByFamily>true</EmployedByFamily>
+      <BorrowerID>B001</BorrowerID>
+    </EMPLOYMENT>
+  </INCOME>
+  
+  <CREDIT_PROFILE>
+    <CreditScore>720</CreditScore>
+    <CreditReportDate>2025-10-20</CreditReportDate>
+  </CREDIT_PROFILE>
+</MISMO_LOAN>

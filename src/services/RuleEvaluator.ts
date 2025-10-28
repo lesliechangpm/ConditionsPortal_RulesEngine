@@ -62,9 +62,24 @@ export class RuleEvaluator implements RuleParser {
       return Boolean(loan.income && loan.income.length > 0);
     }
     
-    // Pattern: "Loan_MortgageType In List: VA"
-    if (logic.includes('loan_mortgagetype') && logic.includes('va')) {
-      return loan.mortgageType === 'VA';
+    // Enhanced mortgage type validation patterns
+    if (this.containsMortgageTypeLogic(logic)) {
+      return this.evaluateMortgageTypeLogic(logic, loan);
+    }
+    
+    // Pattern: "Lien Position = 1"
+    if (logic.includes('lien position') && logic.includes('= 1')) {
+      return loan.lienPosition === 1;
+    }
+    
+    // Pattern: "Is this loan a new construction [Home Form] = Yes"
+    if (logic.includes('new construction') && logic.includes('= yes')) {
+      return Boolean(loan.newConstruction);
+    }
+    
+    // Pattern: "Loan Purpose = Purchase"
+    if (logic.includes('loan purpose') && logic.includes('purchase')) {
+      return loan.loanPurpose?.toLowerCase() === 'purchase';
     }
     
     return false;
@@ -90,18 +105,18 @@ export class RuleEvaluator implements RuleParser {
              loan.ausResult === 'Approved';
     }
     
-    // ASSET500 - Bank assets on URLA without VOA
-    if (rules.includes('bank assets') && rules.includes('urla') && rules.includes('no voa')) {
-      return Boolean(loan.bankAssets && loan.bankAssets.length > 0);
+    // ASSET500 - Bank assets on URLA without VOA (updated to use parsed flag)
+    if (rules.includes('bank assets') && rules.includes('urla')) {
+      return Boolean(loan.hasBankAssets);
     }
     
-    // ASSET507 - EMD > $0
-    if (rules.includes('emd amount') && rules.includes('> $0')) {
-      return (loan.earnestMoneyDeposit || 0) > 0;
+    // ASSET507 - EMD >= $1 (updated per user requirement)
+    if (rules.includes('emd amount is > $0')) {
+      return (loan.earnestMoneyDeposit || 0) >= 1;
     }
     
     // CLSNG827 - VA IRRRL loans
-    if (rules.includes('va irrrl')) {
+    if (rules.includes('va irrrl') || rules.includes('all va irrrl')) {
       return loan.mortgageType === 'VA' && 
              (loan.vaRefiType === 'IRRRL' || loan.vaRefiType === 'IRRR');
     }
@@ -116,6 +131,11 @@ export class RuleEvaluator implements RuleParser {
       return Boolean(loan.bankruptcy) && 
              loan.ausResult !== 'Approved' &&
              ['FHA', 'VA', 'USDA'].includes(loan.mortgageType || '');
+    }
+    
+    // General bankruptcy conditions - trigger when BankruptcyIndicator is true
+    if (rules.includes('bankruptcy') || rules.includes('bankrupt')) {
+      return Boolean(loan.bankruptcy);
     }
     
     // CRED308 - REO with linked mortgage liability
@@ -149,9 +169,14 @@ export class RuleEvaluator implements RuleParser {
              ['Conv', 'FHA', 'VA', 'USDA'].includes(loan.mortgageType || '');
     }
     
-    // INC401/INC402 - Alimony income
-    if (rules.includes('other income type = alimony')) {
-      return Boolean(loan.income && loan.income.some(inc => inc.type.toLowerCase().includes('alimony')));
+    // INC401/INC402 - Alimony income (updated to use parsed flag)
+    if (rules.includes('other income type = alimony') || rules.includes('alimony')) {
+      return Boolean(loan.hasAlimonyIncome);
+    }
+    
+    // INC4xx - Child support income
+    if (rules.includes('child support') || rules.includes('other income type = child support')) {
+      return Boolean(loan.hasChildSupportIncome);
     }
     
     // INC406 - Pension income
@@ -206,6 +231,71 @@ export class RuleEvaluator implements RuleParser {
              termiteStates.includes(loan.propertyState || '');
     }
     
+    // CRED301 - REO to be sold exists
+    if (rules.includes('any reo to be sold exists')) {
+      return Boolean(loan.reo && loan.reo.some(property => Boolean(property.markedToBeSold)));
+    }
+    
+    // CRED310 - REO refinance payoff at closing
+    if (rules.includes('loan purpose = refinance') && rules.includes('any reo has a mortgage') && rules.includes('marked to be paid off at closing')) {
+      return loan.loanPurpose === 'Refinance' &&
+             loan.lienPosition === 1 &&
+             ['Conv', 'FHA', 'VA', 'USDA'].includes(loan.mortgageType || '') &&
+             Boolean(loan.reo && loan.reo.some(property => 
+               Boolean(property.linkedToMortgage) && Boolean(property.paidOffAtClosing)));
+    }
+    
+    // CRED320 - Credit was run
+    if (rules.includes('conventional, fha, va and usda where credit was run')) {
+      return ['Conv', 'Conventional', 'FHA', 'VA', 'USDA'].includes(loan.mortgageType || '') &&
+             Boolean(loan.creditRunIndicator);
+    }
+    
+    // INC408 - Self-employed with high ownership or family employment
+    if (rules.includes('self employed or business owner field is not empty') && 
+        (rules.includes('ownership share = greater than or equal to 25 percent') || 
+         rules.includes('employed by family or party to transaction field = yes'))) {
+      return Boolean(loan.selfEmployed) &&
+             loan.income && loan.income.some(inc => 
+               (inc.ownershipShare !== undefined && inc.ownershipShare >= 25) ||
+               Boolean(inc.employedByFamily));
+    }
+    
+    // INC423 - Government loan employment verification
+    if (rules.includes('all fha, va and usda transactions')) {
+      return ['FHA', 'VA', 'USDA'].includes(loan.mortgageType || '');
+    }
+    
+    // NEW CONST1400 - VA new construction acknowledgment
+    if (rules.includes('va only') && rules.includes('new construction checkbox = true only') && rules.includes('purchase only')) {
+      return loan.mortgageType === 'VA' &&
+             Boolean(loan.newConstruction) &&
+             loan.loanPurpose === 'Purchase';
+    }
+    
+    // NEW CONST1401 - Termite protection for new construction
+    if (rules.includes('new const in specific states') && rules.includes('usda/va/fha')) {
+      const termiteStates = [
+        'Alabama', 'Arkansas', 'Arizona', 'California', 'Connecticut', 'Delaware', 
+        'Florida', 'Georgia', 'Hawaii', 'Iowa', 'Illinois', 'Indiana', 'Kansas', 
+        'Kentucky', 'Louisiana', 'Massachusetts', 'Maryland', 'Mississippi', 'Missouri', 
+        'North Carolina', 'Nebraska', 'New Jersey', 'New Mexico', 'Nevada', 'Ohio', 
+        'Oklahoma', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'Tennessee', 
+        'Texas', 'Utah', 'Virginia', 'West Virginia', 'Washington, D.C.'
+      ];
+      
+      return ['USDA', 'VA', 'FHA'].includes(loan.mortgageType || '') &&
+             Boolean(loan.newConstruction) &&
+             termiteStates.includes(loan.propertyState || '');
+    }
+    
+    // NEW CONST1404 - FHA new construction certification
+    if (rules.includes('all fha new construction purchase')) {
+      return loan.mortgageType === 'FHA' &&
+             Boolean(loan.newConstruction) &&
+             loan.loanPurpose === 'Purchase';
+    }
+    
     // PROP617 - VA Appraisal
     if (rules.includes('va') && rules.includes('exclude irrrl')) {
       return loan.mortgageType === 'VA' && 
@@ -253,5 +343,61 @@ export class RuleEvaluator implements RuleParser {
       default:
         return true;
     }
+  }
+
+  private containsMortgageTypeLogic(logic: string): boolean {
+    return logic.includes('mortgage type') || 
+           logic.includes('loan_mortgagetype') ||
+           logic.includes('loan:');
+  }
+  
+  private evaluateMortgageTypeLogic(logic: string, loan: LoanData): boolean {
+    const loanType = loan.mortgageType?.toLowerCase() || '';
+    
+    // Pattern: "Mortgage Type = VA"
+    if (logic.includes('mortgage type = va') || logic.includes('loan: va')) {
+      return loanType === 'va';
+    }
+    
+    // Pattern: "Mortgage Type = FHA"  
+    if (logic.includes('mortgage type = fha') || logic.includes('loan: fha')) {
+      return loanType === 'fha';
+    }
+    
+    // Pattern: "Mortgage Type = Conv"
+    if (logic.includes('mortgage type = conv') || logic.includes('mortgage type = conventional')) {
+      return loanType === 'conv' || loanType === 'conventional';
+    }
+    
+    // Pattern: "Mortgage Type = USDA"
+    if (logic.includes('mortgage type = usda') || logic.includes('mortgage type = rhs')) {
+      return loanType === 'usda' || loanType === 'rhs';
+    }
+    
+    // Pattern: "Loan_MortgageType In List: VA"
+    if (logic.includes('loan_mortgagetype') && logic.includes('in list')) {
+      if (logic.includes('va')) return loanType === 'va';
+      if (logic.includes('fha')) return loanType === 'fha';
+      if (logic.includes('conv')) return loanType === 'conv' || loanType === 'conventional';
+      if (logic.includes('usda')) return loanType === 'usda';
+    }
+    
+    // Pattern: "Mortgage Type is NOT Non-QM" 
+    if (logic.includes('mortgage type is not non-qm') || logic.includes('mortgage type ≠ non-qm')) {
+      return loanType !== 'non-qm' && loanType !== 'nonqm';
+    }
+    
+    // Multiple type patterns like "Mortgage Type = Conv -or- FHA -or- VA -or- RHS"
+    if (logic.includes('-or-') && logic.includes('mortgage type')) {
+      const supportedTypes = [];
+      if (logic.includes('conv')) supportedTypes.push('conv', 'conventional');
+      if (logic.includes('fha')) supportedTypes.push('fha');
+      if (logic.includes('va')) supportedTypes.push('va');
+      if (logic.includes('usda') || logic.includes('rhs')) supportedTypes.push('usda', 'rhs');
+      
+      return supportedTypes.includes(loanType);
+    }
+    
+    return true; // Default to true if no specific mortgage type logic found
   }
 }

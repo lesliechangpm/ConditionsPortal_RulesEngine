@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>FHA_LOW_DOWN_001</LoanIdentifier>
+    <LoanAmount>320000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>FHA</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>96.5</LoanToValue>
+    <ProductCode>30YR_FIXED</ProductCode>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>8000</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-1500</CashFromToBorrowerAmount>
+      <PITIAmount>2100</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>Condo</PropertyType>
+    <PropertyState>FL</PropertyState>
+    <PropertyAddress>789 Beach Ave, Miami, FL 33101</PropertyAddress>
+    <NewConstruction>true</NewConstruction>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>Maria</FirstName>
+    <LastName>Garcia</LastName>
+    <Citizenship>US Citizen</Citizenship>
+    <MaritalStatus>Single</MaritalStatus>
+  </BORROWER>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>Bank</AssetType>
+      <AssetAmount>25000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+</MISMO_LOAN>

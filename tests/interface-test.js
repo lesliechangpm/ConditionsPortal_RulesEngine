@@ -193,6 +193,42 @@ async function testWebInterface() {
                             
                             if (resultsVisible) {
                                 console.log('✅ Evaluation completed and results displayed');
+                                
+                                // Test export functionality
+                                console.log('📁 Testing export functionality...');
+                                
+                                // Check if export section exists
+                                const exportSectionVisible = await page.evaluate(() => {
+                                    const exportSection = document.querySelector('.export-section');
+                                    return exportSection && exportSection.style.display !== 'none';
+                                });
+                                
+                                if (exportSectionVisible) {
+                                    console.log('✅ Export section found');
+                                    
+                                    // Check for export buttons
+                                    const exportButtons = await page.$$('.export-btn');
+                                    if (exportButtons.length >= 4) {
+                                        console.log(`✅ Found ${exportButtons.length} export buttons`);
+                                        
+                                        // Test clicking JSON export button
+                                        try {
+                                            console.log('🔄 Testing JSON export button click...');
+                                            await page.click('.export-btn.json');
+                                            console.log('✅ JSON export button clicked successfully');
+                                            
+                                            // Wait a bit for any processing
+                                            await new Promise(resolve => setTimeout(resolve, 2000));
+                                            
+                                        } catch (error) {
+                                            console.log('❌ Export button click failed:', error.message);
+                                        }
+                                    } else {
+                                        console.log(`❌ Expected 4 export buttons, found ${exportButtons.length}`);
+                                    }
+                                } else {
+                                    console.log('❌ Export section not found');
+                                }
                             } else {
                                 console.log('❌ Results not displayed after evaluation');
                             }

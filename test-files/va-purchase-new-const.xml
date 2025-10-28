@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>VA_PURCHASE_NEW_CONST_001</LoanIdentifier>
+    <LoanAmount>450000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>VA</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>88</LoanToValue>
+    <ProductCode>30YR_FIXED_VA_NEW_CONST</ProductCode>
+    <NewConstruction>true</NewConstruction>
+    <AUSResult>Manual</AUSResult>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>5000</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-200</CashFromToBorrowerAmount>
+      <PITIAmount>3200</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>TX</PropertyState>
+    <NewConstruction>true</NewConstruction>
+    <PropertyAddress>123 New Construction Ave, Austin, TX 78701</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>Robert</FirstName>
+    <LastName>VeteranBuilder</LastName>
+    <Citizenship>US Citizen</Citizenship>
+    <MaritalStatus>Single</MaritalStatus>
+    <SelfEmployed>false</SelfEmployed>
+    
+    <DECLARATIONS>
+      <BankruptcyIndicator>false</BankruptcyIndicator>
+    </DECLARATIONS>
+  </BORROWER>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>Bank</AssetType>
+      <AssetAmount>95000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+  
+  <INCOME>
+    <EMPLOYMENT>
+      <EmploymentStatus>Current</EmploymentStatus>
+      <EmployerName>Defense Contractor Inc</EmployerName>
+      <SelfEmployed>false</SelfEmployed>
+      <BaseIncome>85000</BaseIncome>
+      <OwnershipShare>0</OwnershipShare>
+      <EmployedByFamily>false</EmployedByFamily>
+      <BorrowerID>B001</BorrowerID>
+    </EMPLOYMENT>
+  </INCOME>
+  
+  <CREDIT_PROFILE>
+    <CreditScore>740</CreditScore>
+    <CreditReportDate>2025-10-26</CreditReportDate>
+    <CreditRunIndicator>true</CreditRunIndicator>
+  </CREDIT_PROFILE>
+</MISMO_LOAN>

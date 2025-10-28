@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>USDA_NEW_CONST_001</LoanIdentifier>
+    <LoanAmount>280000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>USDA</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>100</LoanToValue>
+    <ProductCode>30YR_FIXED_USDA</ProductCode>
+    <NewConstruction>true</NewConstruction>
+    <AUSResult>Approved</AUSResult>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>2000</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-300</CashFromToBorrowerAmount>
+      <PITIAmount>1850</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>NC</PropertyState>
+    <PropertyAddress>555 Rural Farm Road, Charlotte, NC 28201</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>Robert</FirstName>
+    <LastName>Farmer</LastName>
+    <Citizenship>Naturalized Citizen</Citizenship>
+    <MaritalStatus>Married</MaritalStatus>
+    <SelfEmployed>false</SelfEmployed>
+    
+    <DECLARATIONS>
+      <BankruptcyIndicator>true</BankruptcyIndicator>
+      <BankruptcyType>Chapter 13</BankruptcyType>
+      <BankruptcyDate>2019-06-01</BankruptcyDate>
+      <BankruptcyDischargeDate>2022-06-01</BankruptcyDischargeDate>
+    </DECLARATIONS>
+  </BORROWER>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>Bank</AssetType>
+      <AssetAmount>28000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+    
+    <ASSET>
+      <AssetType>Retirement</AssetType>
+      <AssetAmount>45000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+  
+  <INCOME>
+    <EMPLOYMENT>
+      <EmploymentStatus>Current</EmploymentStatus>
+      <EmployerName>North Carolina Farm Bureau</EmployerName>
+      <SelfEmployed>false</SelfEmployed>
+      <BaseIncome>58000</BaseIncome>
+      <BorrowerID>B001</BorrowerID>
+    </EMPLOYMENT>
+    
+    <OTHER_INCOME>
+      <IncomeType>Alimony</IncomeType>
+      <MonthlyAmount>900</MonthlyAmount>
+      <Duration>36</Duration>
+      <BorrowerID>B001</BorrowerID>
+    </OTHER_INCOME>
+  </INCOME>
+  
+  <CREDIT_PROFILE>
+    <CreditScore>650</CreditScore>
+    <CreditReportDate>2025-10-22</CreditReportDate>
+  </CREDIT_PROFILE>
+</MISMO_LOAN>

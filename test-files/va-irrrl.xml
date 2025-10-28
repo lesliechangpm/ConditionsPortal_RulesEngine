@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>VA_IRRRL_001</LoanIdentifier>
+    <LoanAmount>295000</LoanAmount>
+    <LoanPurpose>Refinance</LoanPurpose>
+    <MortgageType>VA</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>95</LoanToValue>
+    <ProductCode>30YR_FIXED</ProductCode>
+    <VARefiType>IRRR</VARefiType>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>0</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-450</CashFromToBorrowerAmount>
+      <PITIAmount>1950</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>VA</PropertyState>
+    <PropertyAddress>888 Military Dr, Norfolk, VA 23501</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>David</FirstName>
+    <LastName>Marine</LastName>
+    <Citizenship>US Citizen</Citizenship>
+    <MaritalStatus>Married</MaritalStatus>
+  </BORROWER>
+</MISMO_LOAN>

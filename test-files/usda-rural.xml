@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>USDA_RURAL_001</LoanIdentifier>
+    <LoanAmount>275000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>USDA</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>100</LoanToValue>
+    <ProductCode>30YR_FIXED</ProductCode>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>3000</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>0</CashFromToBorrowerAmount>
+      <PITIAmount>1750</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>KS</PropertyState>
+    <PropertyAddress>321 Country Rd, Topeka, KS 66601</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>Robert</FirstName>
+    <LastName>Farmer</LastName>
+    <Citizenship>US Citizen</Citizenship>
+    <MaritalStatus>Married</MaritalStatus>
+  </BORROWER>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>Bank</AssetType>
+      <AssetAmount>15000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+  
+  <INCOME>
+    <EMPLOYMENT>
+      <EmploymentStatus>Current</EmploymentStatus>
+      <EmployerName>Family Farm LLC</EmployerName>
+      <SelfEmployed>true</SelfEmployed>
+      <BaseIncome>45000</BaseIncome>
+      <BorrowerID>B001</BorrowerID>
+    </EMPLOYMENT>
+  </INCOME>
+</MISMO_LOAN>

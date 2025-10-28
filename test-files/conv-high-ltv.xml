@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>CONV_HIGH_LTV_001</LoanIdentifier>
+    <LoanAmount>500000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>Conv</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>95</LoanToValue>
+    <ProductCode>30YR_FIXED</ProductCode>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>25000</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-2000</CashFromToBorrowerAmount>
+      <PITIAmount>3200</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>CA</PropertyState>
+    <PropertyAddress>123 Main St, Los Angeles, CA 90210</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>John</FirstName>
+    <LastName>Buyer</LastName>
+    <Citizenship>US Citizen</Citizenship>
+    <MaritalStatus>Single</MaritalStatus>
+  </BORROWER>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>Bank</AssetType>
+      <AssetAmount>75000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+</MISMO_LOAN>

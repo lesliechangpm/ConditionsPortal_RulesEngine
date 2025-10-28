@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>VA_NEW_CONST_001</LoanIdentifier>
+    <LoanAmount>450000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>VA</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>100</LoanToValue>
+    <ProductCode>30YR_FIXED</ProductCode>
+    <NewConstruction>true</NewConstruction>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>5000</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-300</CashFromToBorrowerAmount>
+      <PITIAmount>2850</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>TX</PropertyState>
+    <PropertyAddress>456 Veteran Blvd, Austin, TX 78701</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>Sarah</FirstName>
+    <LastName>Veteran</LastName>
+    <Citizenship>US Citizen</Citizenship>
+    <MaritalStatus>Married</MaritalStatus>
+  </BORROWER>
+</MISMO_LOAN>

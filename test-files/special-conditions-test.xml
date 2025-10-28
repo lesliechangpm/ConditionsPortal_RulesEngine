@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>SPECIAL_CONDITIONS_001</LoanIdentifier>
+    <LoanAmount>275000</LoanAmount>
+    <LoanPurpose>Refinance</LoanPurpose>
+    <MortgageType>FHA</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>78</LoanToValue>
+    <ProductCode>30YR_FIXED_FHA</ProductCode>
+    <NewConstruction>true</NewConstruction>
+    <AUSResult>Manual</AUSResult>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>0</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-800</CashFromToBorrowerAmount>
+      <PITIAmount>1950</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>TX</PropertyState>
+    <PropertyAddress>456 Special Conditions Lane, Houston, TX 77001</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>Susan</FirstName>
+    <LastName>PostFunding</LastName>
+    <Citizenship>US Citizen</Citizenship>
+    <MaritalStatus>Single</MaritalStatus>
+    <SelfEmployed>true</SelfEmployed>
+    
+    <DECLARATIONS>
+      <BankruptcyIndicator>false</BankruptcyIndicator>
+    </DECLARATIONS>
+  </BORROWER>
+  
+  <REO>
+    <PROPERTY>
+      <PropertyAddress>123 To Be Sold Ave, Dallas, TX 75201</PropertyAddress>
+      <PropertyType>SingleFamily</PropertyType>
+      <PropertyState>TX</PropertyState>
+      <PropertyValue>180000</PropertyValue>
+      <LinkedToMortgage>false</LinkedToMortgage>
+      <MarkedToBeSold>true</MarkedToBeSold>
+      <PaidOffAtClosing>false</PaidOffAtClosing>
+      <MonthlyRent>1600</MonthlyRent>
+      <MonthlyPayment>0</MonthlyPayment>
+      <BorrowerID>B001</BorrowerID>
+    </PROPERTY>
+    
+    <PROPERTY>
+      <PropertyAddress>789 Payoff Property St, Austin, TX 78701</PropertyAddress>
+      <PropertyType>Condominium</PropertyType>
+      <PropertyState>TX</PropertyState>
+      <PropertyValue>220000</PropertyValue>
+      <LinkedToMortgage>true</LinkedToMortgage>
+      <MortgageType>Conv</MortgageType>
+      <MortgageBalance>95000</MortgageBalance>
+      <MarkedToBeSold>false</MarkedToBeSold>
+      <PaidOffAtClosing>true</PaidOffAtClosing>
+      <MonthlyRent>0</MonthlyRent>
+      <MonthlyPayment>850</MonthlyPayment>
+      <BorrowerID>B001</BorrowerID>
+    </PROPERTY>
+  </REO>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>Bank</AssetType>
+      <AssetAmount>65000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+  
+  <INCOME>
+    <EMPLOYMENT>
+      <EmploymentStatus>Current</EmploymentStatus>
+      <EmployerName>Susan's Consulting LLC</EmployerName>
+      <SelfEmployed>true</SelfEmployed>
+      <BaseIncome>85000</BaseIncome>
+      <OwnershipShare>100</OwnershipShare>
+      <EmployedByFamily>false</EmployedByFamily>
+      <BorrowerID>B001</BorrowerID>
+    </EMPLOYMENT>
+  </INCOME>
+  
+  <CREDIT_PROFILE>
+    <CreditScore>660</CreditScore>
+    <CreditReportDate>2025-10-28</CreditReportDate>
+    <CreditRunIndicator>true</CreditRunIndicator>
+  </CREDIT_PROFILE>
+</MISMO_LOAN>

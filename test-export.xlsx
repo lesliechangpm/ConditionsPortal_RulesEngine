@@ -1,0 +1,26 @@
+{
+  "loanId": "DEMO_LOAN_001",
+  "evaluationDate": "2025-10-27T18:07:46.624Z",
+  "conditions": {
+    "PTD": [
+      {
+        "conditionCode": "APP102",
+        "class": "Processor III",
+        "description": "CMG Lender requires mortgage insurance coverage.",
+        "borrowerDescription": "Please provide mortgage insurance documentation.",
+        "documentProvider": "INT",
+        "category": "Loan"
+      },
+      {
+        "conditionCode": "CRED324",
+        "class": "UW",
+        "description": "Underwriter must confirm the approved credit report scores match the scores in the credit score disclosure screen.",
+        "documentProvider": "INT",
+        "category": "Credit"
+      }
+    ],
+    "PTF": [],
+    "POST": []
+  },
+  "totalConditions": 2
+}

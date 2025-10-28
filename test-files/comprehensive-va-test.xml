@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>VA_COMPREHENSIVE_001</LoanIdentifier>
+    <LoanAmount>400000</LoanAmount>
+    <LoanPurpose>Purchase</LoanPurpose>
+    <MortgageType>VA</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>100</LoanToValue>
+    <ProductCode>30YR_FIXED</ProductCode>
+    <NewConstruction>true</NewConstruction>
+    <AUSResult>Approved</AUSResult>
+    <VARefiType>IRRRL</VARefiType>
+    <UnderwritingMethod>Manual</UnderwritingMethod>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>5000</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-600</CashFromToBorrowerAmount>
+      <PITIAmount>2400</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>TX</PropertyState>
+    <PropertyAddress>123 New Construction Ave, Austin, TX 78701</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>John</FirstName>
+    <LastName>Veteran</LastName>
+    <Citizenship>Green Card</Citizenship>
+    <MaritalStatus>Married</MaritalStatus>
+    <SelfEmployed>true</SelfEmployed>
+    
+    <DECLARATIONS>
+      <BankruptcyIndicator>true</BankruptcyIndicator>
+      <BankruptcyType>Chapter 7</BankruptcyType>
+      <BankruptcyDate>2018-03-15</BankruptcyDate>
+      <BankruptcyDischargeDate>2018-09-15</BankruptcyDischargeDate>
+    </DECLARATIONS>
+  </BORROWER>
+  
+  <REO>
+    <PROPERTY>
+      <PropertyAddress>456 Old VA Home, San Antonio, TX 78201</PropertyAddress>
+      <PropertyType>SingleFamily</PropertyType>
+      <PropertyState>TX</PropertyState>
+      <PropertyValue>250000</PropertyValue>
+      <LinkedToMortgage>true</LinkedToMortgage>
+      <MortgageType>VA</MortgageType>
+      <MortgageBalance>80000</MortgageBalance>
+      <MarkedToBeSold>true</MarkedToBeSold>
+      <PaidOffAtClosing>true</PaidOffAtClosing>
+      <MonthlyRent>0</MonthlyRent>
+      <MonthlyPayment>850</MonthlyPayment>
+      <BorrowerID>B001</BorrowerID>
+    </PROPERTY>
+  </REO>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>Bank</AssetType>
+      <AssetAmount>50000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+    
+    <ASSET>
+      <AssetType>Retirement</AssetType>
+      <AssetAmount>150000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+  
+  <INCOME>
+    <EMPLOYMENT>
+      <EmploymentStatus>Current</EmploymentStatus>
+      <EmployerName>Veteran Construction LLC</EmployerName>
+      <SelfEmployed>true</SelfEmployed>
+      <BaseIncome>85000</BaseIncome>
+      <OwnershipShare>50</OwnershipShare>
+      <BorrowerID>B001</BorrowerID>
+    </EMPLOYMENT>
+    
+    <OTHER_INCOME>
+      <IncomeType>Pension</IncomeType>
+      <MonthlyAmount>2200</MonthlyAmount>
+      <Duration>240</Duration>
+      <Source>VA Disability</Source>
+      <BorrowerID>B001</BorrowerID>
+    </OTHER_INCOME>
+    
+    <OTHER_INCOME>
+      <IncomeType>Alimony</IncomeType>
+      <MonthlyAmount>1200</MonthlyAmount>
+      <Duration>48</Duration>
+      <BorrowerID>B001</BorrowerID>
+    </OTHER_INCOME>
+  </INCOME>
+  
+  <CREDIT_PROFILE>
+    <CreditScore>680</CreditScore>
+    <CreditReportDate>2025-10-25</CreditReportDate>
+  </CREDIT_PROFILE>
+</MISMO_LOAN>

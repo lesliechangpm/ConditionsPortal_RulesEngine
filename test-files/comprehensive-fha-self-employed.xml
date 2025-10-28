@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MISMO_LOAN>
+  <LOAN>
+    <LoanIdentifier>FHA_SELF_EMP_001</LoanIdentifier>
+    <LoanAmount>350000</LoanAmount>
+    <LoanPurpose>Refinance</LoanPurpose>
+    <MortgageType>FHA</MortgageType>
+    <LienPosition>1</LienPosition>
+    <LoanToValue>96.5</LoanToValue>
+    <ProductCode>30YR_FIXED_FHA</ProductCode>
+    <NewConstruction>true</NewConstruction>
+    <AUSResult>Refer/Eligible</AUSResult>
+    
+    <FINANCIAL>
+      <EarnestMoneyDepositAmount>0</EarnestMoneyDepositAmount>
+      <CashFromToBorrowerAmount>-1200</CashFromToBorrowerAmount>
+      <PITIAmount>2100</PITIAmount>
+    </FINANCIAL>
+  </LOAN>
+  
+  <PROPERTY>
+    <PropertyType>SingleFamily</PropertyType>
+    <PropertyState>AL</PropertyState>
+    <PropertyAddress>789 FHA New Build, Birmingham, AL 35201</PropertyAddress>
+  </PROPERTY>
+  
+  <BORROWER>
+    <BorrowerID>B001</BorrowerID>
+    <FirstName>Maria</FirstName>
+    <LastName>Business</LastName>
+    <Citizenship>US Citizen</Citizenship>
+    <MaritalStatus>Single</MaritalStatus>
+    <SelfEmployed>true</SelfEmployed>
+    
+    <DECLARATIONS>
+      <BankruptcyIndicator>false</BankruptcyIndicator>
+    </DECLARATIONS>
+  </BORROWER>
+  
+  <REO>
+    <PROPERTY>
+      <PropertyAddress>321 Investment St, Mobile, AL 36601</PropertyAddress>
+      <PropertyType>Condominium</PropertyType>
+      <PropertyState>AL</PropertyState>
+      <PropertyValue>180000</PropertyValue>
+      <LinkedToMortgage>false</LinkedToMortgage>
+      <MarkedToBeSold>false</MarkedToBeSold>
+      <PaidOffAtClosing>true</PaidOffAtClosing>
+      <MonthlyRent>1400</MonthlyRent>
+      <MonthlyPayment>0</MonthlyPayment>
+      <BorrowerID>B001</BorrowerID>
+    </PROPERTY>
+  </REO>
+  
+  <ASSETS>
+    <ASSET>
+      <AssetType>CheckingAccount</AssetType>
+      <AssetAmount>35000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+    
+    <ASSET>
+      <AssetType>SavingsAccount</AssetType>
+      <AssetAmount>25000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+    
+    <ASSET>
+      <AssetType>Retirement</AssetType>
+      <AssetAmount>85000</AssetAmount>
+      <BorrowerID>B001</BorrowerID>
+    </ASSET>
+  </ASSETS>
+  
+  <INCOME>
+    <EMPLOYMENT>
+      <EmploymentStatus>Current</EmploymentStatus>
+      <EmployerName>Maria's Design Business</EmployerName>
+      <SelfEmployed>true</SelfEmployed>
+      <BaseIncome>75000</BaseIncome>
+      <OwnershipShare>100</OwnershipShare>
+      <EmployedByFamily>false</EmployedByFamily>
+      <BorrowerID>B001</BorrowerID>
+    </EMPLOYMENT>
+    
+    <OTHER_INCOME>
+      <IncomeType>Child Support</IncomeType>
+      <MonthlyAmount>800</MonthlyAmount>
+      <Duration>84</Duration>
+      <BorrowerID>B001</BorrowerID>
+      <Documentation>
+        <DivorceDecree>true</DivorceDecree>
+        <CourtOrder>true</CourtOrder>
+      </Documentation>
+    </OTHER_INCOME>
+    
+    <OTHER_INCOME>
+      <IncomeType>Rental Income</IncomeType>
+      <MonthlyAmount>1400</MonthlyAmount>
+      <Duration>12</Duration>
+      <Source>321 Investment St Property</Source>
+      <BorrowerID>B001</BorrowerID>
+    </OTHER_INCOME>
+  </INCOME>
+  
+  <CREDIT_PROFILE>
+    <CreditScore>620</CreditScore>
+    <CreditReportDate>2025-10-20</CreditReportDate>
+  </CREDIT_PROFILE>
+</MISMO_LOAN>
