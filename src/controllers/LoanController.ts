@@ -347,4 +347,63 @@ export class LoanController {
       });
     }
   };
+
+  // GET /demo-files/:filename - Serve demo files for frontend
+  getDemoFile = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { filename } = req.params;
+      
+      // Validate filename to prevent directory traversal
+      const allowedFiles = [
+        'comprehensive-va-test.xml',
+        'comprehensive-fha-self-employed.xml', 
+        'comprehensive-usda-new-const.xml',
+        'comprehensive-conv-high-ltv.xml',
+        'fha-bankruptcy-alimony.xml',
+        'conv-reo-to-be-sold.xml',
+        'missing-conditions-test.xml',
+        'va-purchase-new-const.xml',
+        'va-irrrl-test.xml',
+        'final-missing-conditions.xml'
+      ];
+
+      if (!allowedFiles.includes(filename)) {
+        res.status(404).json({
+          error: 'File not found',
+          message: 'Demo file not found',
+          availableFiles: allowedFiles
+        });
+        return;
+      }
+
+      const fs = require('fs').promises;
+      const path = require('path');
+      
+      // Construct file path
+      const filePath = path.join(process.cwd(), 'test-files', filename);
+      
+      try {
+        const fileContent = await fs.readFile(filePath, 'utf8');
+        
+        // Set appropriate headers
+        res.setHeader('Content-Type', 'application/xml');
+        res.setHeader('Content-Disposition', `attachment; filename="${filename}"`);
+        
+        res.send(fileContent);
+      } catch (fileError) {
+        res.status(404).json({
+          error: 'File not found',
+          message: `Demo file '${filename}' not found on server`,
+          availableFiles: allowedFiles
+        });
+      }
+
+    } catch (error) {
+      console.error('Error serving demo file:', error);
+      res.status(500).json({
+        error: 'Failed to serve demo file',
+        message: error instanceof Error ? error.message : 'Unknown error occurred'
+      });
+    }
+  };
 }

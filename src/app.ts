@@ -19,9 +19,13 @@ app.use(helmet({
   },
 }));
 
-// CORS middleware
+// CORS middleware - allow GitHub Pages and localhost
 app.use(cors({
-  origin: process.env.ALLOWED_ORIGINS?.split(',') || ['http://localhost:3000', 'http://localhost:3001'],
+  origin: process.env.ALLOWED_ORIGINS?.split(',') || [
+    'http://localhost:3000', 
+    'http://localhost:3001',
+    'https://lesliechangpm.github.io'
+  ],
   credentials: true
 }));
 
@@ -69,6 +73,9 @@ app.get('/api/conditions/stats', loanController.getConditionStats);
 app.get('/api/conditions/search', loanController.searchConditions);
 app.get('/api/conditions/:code', loanController.getConditionDetails);
 app.post('/api/conditions/reload', loanController.reloadConditions);
+
+// Demo files endpoint
+app.get('/demo-files/:filename', loanController.getDemoFile);
 
 // API documentation endpoint
 app.get('/api', (_req, res) => {

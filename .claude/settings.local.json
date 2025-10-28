@@ -10,7 +10,10 @@
       "Bash(npm run test:interface:*)",
       "Bash(cat:*)",
       "Bash(node:*)",
-      "Bash(npm run test:*)"
+      "Bash(npm run test:*)",
+      "Bash(del \"docs\\_config.yml\")",
+      "Bash(rm:*)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": [],
