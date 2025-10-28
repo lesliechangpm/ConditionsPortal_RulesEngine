@@ -93,7 +93,7 @@ export class ExportService {
       }
     });
 
-    return await workbook.xlsx.writeBuffer() as Buffer;
+    return Buffer.from(await workbook.xlsx.writeBuffer());
   }
 
   // Generate HTML report for PDF conversion

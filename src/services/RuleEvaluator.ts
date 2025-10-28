@@ -255,10 +255,10 @@ export class RuleEvaluator implements RuleParser {
     if (rules.includes('self employed or business owner field is not empty') && 
         (rules.includes('ownership share = greater than or equal to 25 percent') || 
          rules.includes('employed by family or party to transaction field = yes'))) {
-      return Boolean(loan.selfEmployed) &&
-             loan.income && loan.income.some(inc => 
+      return Boolean(loan.selfEmployed === true) &&
+             Boolean(loan.income && loan.income.some(inc => 
                (inc.ownershipShare !== undefined && inc.ownershipShare >= 25) ||
-               Boolean(inc.employedByFamily));
+               Boolean(inc.employedByFamily)));
     }
     
     // INC423 - Government loan employment verification

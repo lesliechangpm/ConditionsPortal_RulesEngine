@@ -84,6 +84,8 @@ export interface LoanData {
     amount: number;
     source: string;
     borrowerId?: string;
+    ownershipShare?: number;
+    employedByFamily?: boolean;
   }>;
   
   // Real estate owned
@@ -91,6 +93,7 @@ export interface LoanData {
     address: string;
     linkedToMortgage?: boolean;
     paidOffAtClosing?: boolean;
+    markedToBeSold?: boolean;
   }>;
   
   // AUS and underwriting
@@ -99,6 +102,10 @@ export interface LoanData {
   
   // VA specific
   vaRefiType?: string;
+  
+  // Credit information
+  creditRunIndicator?: boolean;
+  creditScore?: number;
   
   // Additional fields as needed
   [key: string]: unknown;
