@@ -7,8 +7,10 @@ dotenv.config();
 const PORT = parseInt(process.env.PORT || '3000', 10);
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
-// Start the server - bind to 0.0.0.0 for cloud deployment
-const server = app.listen(PORT, '0.0.0.0', () => {
+console.log(`🔍 Starting server with PORT=${PORT} (from env: ${process.env.PORT})`);
+
+// Start the server - let Express choose the interface (more compatible)
+const server = app.listen(PORT, () => {
   console.log(`
 🚀 Loan Conditions Rules Engine API Server Started
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -34,6 +36,13 @@ File Upload:
 • Upload field name: loanFile
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
   `);
+});
+
+// Handle server startup errors
+server.on('error', (error: any) => {
+  console.error('❌ Server startup error:', error);
+  console.error(`❌ Failed to start on port ${PORT}. Environment PORT: ${process.env.PORT}`);
+  process.exit(1);
 });
 
 // Graceful shutdown
